@@ -1,6 +1,4 @@
-body{
-    background-color: #000000;
-}
+
 header {
     font-family: 'Poppins', sans-serif;
 }
@@ -129,9 +127,7 @@ header {
 
 .featured-books {
     padding-top: 10px;
-    background-color: #000000;
     overflow: hidden;
-    color: white;
     font-family: 'Poppins', sans-serif;
     
 
@@ -142,16 +138,16 @@ header {
 }
 
 .card {
-    background-color: #000000;
-    color: white;
-    padding-bottom: 10px;
+    
     height: 80%;
     width: 80%;
     text-align: center;
     margin-left: 20px;
+    border-color: white;
 
 }
 .card-title {
     font-weight: bold;
-    color: gold;
+    color: black;
+    
 }
