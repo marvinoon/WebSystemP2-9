@@ -99,6 +99,46 @@ header {
     font-family: 'Poppins', sans-serif;
 }
 
+#welcome-section {
+    padding: 20px;
+    text-align: left;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .welcome-container {
+    max-width: 800px;
+    margin: 0 auto;
+    border-style: solid;
+    border-radius: 10px;
+    border-color: #000000;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  
+  .subscribe-btn {
+    color: #fff; /* White text */
+    background-color: black; /* Bootstrap primary blue */
+    border-color: black; /* Border color to match */
+    padding: 10px 20px; /* Button padding */
+    text-decoration: none; /* Remove underline from links */
+    display: inline-block; /* Align button correctly */
+    border-radius: 5px; /* Rounded button edges */
+    
+    
+  }
+
+  .subscribe-button{
+    text-align: center;
+  }
+  
+  .subscribe-btn:hover {
+    background-color: gold; 
+    border-color: gold; /* Border color on hover */
+    color: #000;
+  }
+  
 
 .featured-books .col-3 {
     flex: 0 0 auto; /* Prevents flex items from shrinking but allows them to grow */
@@ -150,4 +190,11 @@ header {
     font-weight: bold;
     color: black;
     
+}
+footer{
+    border-top: solid;
+    border-color:gray ;
+    text-align: center;
+    font-size: smaller;
+    font-style: italic;
 }

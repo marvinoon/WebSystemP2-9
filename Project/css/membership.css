@@ -120,7 +120,7 @@ header {
 }
 
 .plan-box .btn-primary:hover {
-    background-color: gold; /* Darker blue on hover */
+    background-color: gold; /*  gold on hover */
     border-color: gold; /* Border color on hover */
     color: #000;
 }
