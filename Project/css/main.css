@@ -286,21 +286,7 @@ footer {
   
   /* TABLETS */
   @media screen and (max-width: 768px) {
-    .header-nav {
-      font-size: small;
-    }
-  
-    .header-nav li {
-      padding: 0 30px;
-    }
-  
-    .video-background {
-      height: 30vh !important;
-    }
-  
-    .header-container {
-      margin-top: -300px;
-    }
+    
   
     .intro-text,
     .intro-content {
@@ -317,14 +303,7 @@ footer {
   }
   
   @media (min-width:769px) and (max-width:992px) {
-    .video-background {
-      height: 40vh !important;
-    }
-  
-    .header-container {
-      margin-top: -300px
-    }
-  
+ 
     .intro-text,
     .intro-content {
       font-size: small !important;
@@ -332,14 +311,8 @@ footer {
   }
   
   @media (min-width:993px) and (max-width: 1200px) {
-    .video-background {
-      height: 70vh !important;
-    }
-  
-    .header-container {
-      margin-top: -300px
-    }
-  
+
+
     .intro-text,
     .intro-content {
       font-size: medium !important;
