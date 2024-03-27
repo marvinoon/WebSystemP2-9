@@ -56,6 +56,7 @@ header {
     height: 15vh;
     justify-content: center;
     align-items: center;
+    margin: 50px;
     
 }
 
@@ -81,6 +82,7 @@ header {
 .membership-plans {
     
     padding: 40px 0; /* Spacing around the section */
+    margin: 58px;
 }
 
 .plan-box {
@@ -123,4 +125,157 @@ header {
     background-color: gold; /*  gold on hover */
     border-color: gold; /* Border color on hover */
     color: #000;
+}
+/* ++++++++++++++++++++ CSS for <footer> and everything inside ++++++++++++++++++++ */
+footer {
+  background-color: black;
+}
+
+.footer-container p {
+  padding-top: 20px;
+}
+
+.footer-nav {
+  width: 100%;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.copyright {
+  font-size: 16px;
+}
+
+.footer-nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  padding-top: 20px;
+}
+
+.footer-nav li {
+  display: flex;
+  align-items: center;
+  padding: 0 50px;
+  /* Horizontal padding for desktop */
+}
+
+.footer-nav a {
+  text-decoration: none;
+  /* Removes underline */
+  color: #FFFFFF;
+  /* Change the color to match your design */
+  transition: color 0.3s ease;
+  /* Optional: for smooth color transition on hover */
+}
+
+.footer-nav a:hover {
+  color: #CCCCCC;
+  /* Change the hover color to match your design */
+}
+
+
+.copyright,
+footer.follow-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ++++++++++++++++++++ CSS for responsive design ++++++++++++++++++++ */
+/* MOBILE PHONES */
+@media screen and (max-width: 480px) {
+
+
+  .footer-nav {
+    font-size: smaller;
+  }
+
+  .footer-nav ul {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer-nav li {
+    padding: 10px 0;
+    /* Vertical padding for stacked items */
+  }
+}
+
+@media only screen and (max-width:576px) {
+  .copyright {
+    order: 1;
+  }
+
+  .footer-nav-child {
+    order: 2;
+  }
+
+  footer.follow-icon {
+    order: 3;
+  }
+
+}
+
+/* TABLETS */
+@media screen and (max-width: 768px) {
+  
+
+  .intro-text,
+  .intro-content {
+    font-size: smaller !important;
+  }
+
+  .footer-nav {
+    font-size: small;
+  }
+
+  .footer-nav li {
+    padding: 0 20px;
+  }
+}
+
+@media (min-width:769px) and (max-width:992px) {
+
+  .intro-text,
+  .intro-content {
+    font-size: small !important;
+  }
+}
+
+@media (min-width:993px) and (max-width: 1200px) {
+
+
+  .intro-text,
+  .intro-content {
+    font-size: medium !important;
+  }
+}
+
+@media (min-width: 1201px) and (max-width: 1400px) {
+
+
+  .intro-text,
+  .intro-content {
+    font-size: large !important;
+  }
+}
+
+.social-icon {
+  text-decoration: none;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.social-icon i {
+  background-color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: black;
+  text-align: center;
+  line-height: 40px;
+  font-size: 20px;
 }
