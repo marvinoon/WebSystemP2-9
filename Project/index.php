@@ -95,7 +95,7 @@
             </div>
         </section>
         <section style="text-align: center; font-size: larger; font-weight: bold; color: black;"> 
-        Placeholder Section 
+            Placeholder Section 
         </section>  
     </main>
     <?php
