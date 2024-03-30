@@ -27,7 +27,7 @@
                 <li>🔄 New Titles Weekly: Our library is constantly updated, so you'll never run out of new adventures.</li>
             </ul>
             <div class="subscribe-button">
-            <a href="memberships.html" class="subscribe-btn">Sign up for free now!</a>
+            <a href="memberships.php" class="subscribe-btn">Sign up for free now!</a>
             </div>
             </div>
         </section>

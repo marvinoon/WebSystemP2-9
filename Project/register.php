@@ -9,9 +9,6 @@
     include "inc/nav.inc.php";
 ?>
 
-<?php
-    include "inc/header.inc.php";
-?>
 
 <!-- Main Content -->
 <body>
