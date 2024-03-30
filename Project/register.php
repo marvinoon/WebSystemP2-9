@@ -45,6 +45,15 @@
                 <input required type="password" id="pwd_confirm" name="pwd_confirm" class="form-control" placeholder="Confirm password">
             </div>
 
+            <div class="mb-3">
+                <label for="membershipType" class="form-label">Select Membership Type:</label>
+                <select name="membershipType" id="membershipType" class="form-select">
+                    <option value="free">Free Tier</option>
+                    <option value="regular">Regular Tier</option>
+                    <option value="premium">Premium Tier</option>
+                    </select>
+            </div>
+
             <div class="mb-3 form-check">
                 <input type="checkbox" name="agree" class="form-check-input" id="agree">
                 <label required class="form-check-label" for="agree">Agree to terms and conditions.</label>

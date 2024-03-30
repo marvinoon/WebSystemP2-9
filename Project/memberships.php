@@ -28,7 +28,7 @@
                                 <li>Benefit 2</li>
                                 <li>More...</li>
                             </ul>
-                            <a href="#" class="btn btn-primary">Sign Up Now</a>
+                            <a href="register.php" class="btn btn-primary">Sign Up Now</a>
                         </div>
                     </div>
                     <!-- Regular Tier -->
@@ -52,7 +52,7 @@
                                 <li>Benefit 2</li>
                                 <li>More...</li>
                             </ul>
-                            <a href="#" class="btn btn-primary">Sign Up Now</a>
+                            <a href="register.php" class="btn btn-primary">Sign Up Now</a>
                         </div>
                     </div>
                 </div>

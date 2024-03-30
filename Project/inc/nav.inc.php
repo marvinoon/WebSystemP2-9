@@ -25,7 +25,7 @@
                     </li>
     
                     <li class="nav-item">
-                        <a class="nav-link btn-custom" href="#">Sign In</a>
+                        <a class="nav-link btn-custom" href="register.php">Sign Up</a>
                     </li>
     
                 </ul>
