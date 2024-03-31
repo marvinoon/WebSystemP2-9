@@ -2,6 +2,8 @@
 <html lang="en">
 <head>
         <link rel="stylesheet" href="css/membership.css">
+        <link rel="stylesheet" href="css/nav.css">
+        <link rel="stylesheet" href="css/footer.css">
         <?php
             include "inc/head.inc.php"
         ?>
@@ -28,7 +30,7 @@
                                 <li>Benefit 2</li>
                                 <li>More...</li>
                             </ul>
-                            <a href="register.php" class="btn btn-primary">Sign Up Now</a>
+                            <a href="loginregister.php" class="btn btn-primary">Sign Up Now</a>
                         </div>
                     </div>
                     <!-- Regular Tier -->
@@ -40,7 +42,7 @@
                                 <li>Benefit 2</li>
                                 <li>More...</li>
                             </ul>
-                            <a href="register.php" class="btn btn-primary">Sign Up Now</a>
+                            <a href="loginregister.php" class="btn btn-primary">Sign Up Now</a>
                         </div>
                     </div>
                     <!-- Premium Tier -->
@@ -52,7 +54,7 @@
                                 <li>Benefit 2</li>
                                 <li>More...</li>
                             </ul>
-                            <a href="register.php" class="btn btn-primary">Sign Up Now</a>
+                            <a href="loginregister.php" class="btn btn-primary">Sign Up Now</a>
                         </div>
                     </div>
                 </div>

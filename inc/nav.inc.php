@@ -17,7 +17,7 @@
                     </li>
     
                     <li class="nav-item">
-                        <a class="nav-link" href="#">About Us</a>
+                        <a class="nav-link" href="aboutus.php">About Us</a>
                     </li>
     
                     <li class="nav-item">
@@ -25,7 +25,7 @@
                     </li>
     
                     <li class="nav-item">
-                        <a class="nav-link btn-custom" href="loginregister.php">Login / Register</a>
+                        <a class="nav-link btn-custom" href="loginregister.php">Sign Up</a>
                     </li>
     
                 </ul>
