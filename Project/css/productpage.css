@@ -1,0 +1,97 @@
+/* Header and Navigation Styles */
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #fff; /* White background for a clean look */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Soft shadow for depth */
+}
+
+.nav-item ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.nav-item li {
+    margin-left: 20px;
+}
+
+.nav-item a {
+    text-decoration: none;
+    color: #000; /* Black text color */
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+}
+
+.nav-item a:hover {
+    color: #d4af37; /* Gold color on hover for links */
+}
+
+.fa-user, .fa-heart {
+    margin-right: 5px;
+    
+}
+
+
+.btn-add-to-account {
+    color: #fff; /* White text */
+    background-color: black; /* Bootstrap primary blue */
+    border-color: black; /* Border color to match */
+    padding: 10px 20px; /* Button padding */
+    text-decoration: none; /* Remove underline from links */
+    display: inline-block; /* Align button correctly */
+    border-radius: 5px; /* Rounded button edges */
+    margin-top: 10px;
+}
+
+.btn-add-to-account:hover {
+    background-color: gold; 
+    border-color: gold; /* Border color on hover */
+    color: #000;
+}
+
+/* General Styling for Icons and Logo */
+.icon {
+    color: #000; /* Black color for icons */
+}
+
+
+.item-details-container {
+    font-family: 'Poppins', sans-serif; /* Or your chosen font */
+}
+
+.item-details-container h1, .product-details h2 {
+    margin-bottom: 10px;
+}
+
+.product-details p {
+    font-size: 16px; /* Adjust based on your design */
+    line-height: 1.5;
+    margin-bottom: 10px;
+}
+
+.book-details p {
+    font-size: 16px; /* Adjust based on your design */
+    line-height: 1.5;
+
+}
+
+.book-details {
+    background-color: #f8f9fa; /* Light grey background for contrast */
+    padding: 15px;
+    border-radius: 5px; /* Optional: adds rounded corners */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Soft shadow for depth */
+}
+
+.book-details h3 {
+    color: #333; /* Darker text for the section heading */
+}
+
+.book-details p strong {
+    color: #000; /* Ensures strong elements are visually distinct */
+}
+
