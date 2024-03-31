@@ -44,6 +44,9 @@
                             <div class="card-body">
                                 <h5 class="card-title">Book Title 1</h5>
                                 <p class="card-text">Book 1 description...</p>
+                                <div class="product-button">
+                                    <a href="productpage.php" class="product-btn">View Details</a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -54,6 +57,9 @@
                             <div class="card-body">
                                 <h5 class="card-title">Book Title 2</h5>
                                 <p class="card-text">Book 2 description...</p>
+                                <div class="product-button">
+                                    <a href="productpage.php" class="product-btn">View Details</a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -63,6 +69,9 @@
                             <div class="card-body">
                                 <h5 class="card-title">Book Title 3</h5>
                                 <p class="card-text">Book 3 description...</p>
+                                <div class="product-button">
+                                    <a href="productpage.php" class="product-btn">View Details</a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -72,6 +81,9 @@
                             <div class="card-body">
                                 <h5 class="card-title">Book Title 4</h5>
                                 <p class="card-text">Book 4 description...</p>
+                                <div class="product-button">
+                                    <a href="productpage.php" class="product-btn">View Details</a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -81,6 +93,9 @@
                             <div class="card-body">
                                 <h5 class="card-title">Book Title 5</h5>
                                 <p class="card-text">Book 5 description...</p>
+                                <div class="product-button">
+                                    <a href="productpage.php" class="product-btn">View Details</a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -90,6 +105,9 @@
                             <div class="card-body">
                                 <h5 class="card-title">Book Title 6</h5>
                                 <p class="card-text">Book 6 description...</p>
+                                <div class="product-button">
+                                    <a href="productpage.php" class="product-btn">View Details</a>
+                                </div>
                             </div>
                         </div>
                     </div>

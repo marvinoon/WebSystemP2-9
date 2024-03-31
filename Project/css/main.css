@@ -89,7 +89,26 @@ header {
     border-color: gold; /* Border color on hover */
     color: #000;
   }
+
+  .product-btn{
+    color: #fff; /* White text */
+    background-color: black; /* Bootstrap primary blue */
+    border-color: black; /* Border color to match */
+    padding: 10px 20px; /* Button padding */
+    text-decoration: none; /* Remove underline from links */
+    display: inline-block; /* Align button correctly */
+    border-radius: 5px; /* Rounded button edges */
+  }
+
+  .product-button{
+    text-align: center;
+  }
   
+  .product-btn:hover {
+    background-color: gold; 
+    border-color: gold; /* Border color on hover */
+    color: #000;
+  }
 
 .featured-books .col-3 {
     flex: 0 0 auto; /* Prevents flex items from shrinking but allows them to grow */
