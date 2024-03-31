@@ -15,9 +15,9 @@
         <main>
         <div id="welcome-wrapper">
             <section id="slideshow">
-                <img src="images/slide1.jpeg" alt="Slide 1">
-                <img src="images/slide2.jpeg" alt="Slide 2">
-                <img src="images/slide3.jpeg" alt="Slide 3">
+                <img src="images/slide1.jpg" alt="Slide 1">
+                <img src="images/slide2.jpg" alt="Slide 2">
+                <img src="images/slide3.jpg" alt="Slide 3">
             </section>
             <section id="welcome-section">
                 <h1 id="headline">Welcome to eBookify!</h1>
