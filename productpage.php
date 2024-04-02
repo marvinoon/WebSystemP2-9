@@ -12,8 +12,6 @@
     <?php 
         include "inc/nav.inc.php"; 
     ?> 
-    <?php include "db_connect.php"; 
-    ?>
     <body> 
         <div class="back-arrow">
             <a href="javascript:history.back()" aria-label="Go back">
