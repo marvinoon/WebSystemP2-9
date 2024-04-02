@@ -1,41 +1,3 @@
-/* Header and Navigation Styles */
-.nav-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    background-color: #fff; /* White background for a clean look */
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Soft shadow for depth */
-}
-
-.nav-item ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-}
-
-.nav-item li {
-    margin-left: 20px;
-}
-
-.nav-item a {
-    text-decoration: none;
-    color: #000; /* Black text color */
-    font-weight: 500;
-    display: flex;
-    align-items: center;
-}
-
-.nav-item a:hover {
-    color: #d4af37; /* Gold color on hover for links */
-}
-
-.fa-user, .fa-heart {
-    margin-right: 5px;
-    
-}
-
 
 .btn-add-to-account {
     color: #fff; /* White text */
@@ -52,6 +14,22 @@
     background-color: gold; 
     border-color: gold; /* Border color on hover */
     color: #000;
+}
+.btn-read-book {
+    color: #fff; /* White text */
+    background-color: palevioletred; /* Bootstrap primary blue */
+    border-color: palevioletred; /* Border color to match */
+    padding: 10px 20px; /* Button padding */
+    text-decoration: none; /* Remove underline from links */
+    display: inline-block; /* Align button correctly */
+    border-radius: 5px; /* Rounded button edges */
+    margin-top: 10px;
+}
+
+.btn-read-book:hover{
+    background-color: purple; 
+    border-color: purple; /* Border color on hover */
+    color: white;
 }
 
 /* General Styling for Icons and Logo */
@@ -94,4 +72,35 @@
 .book-details p strong {
     color: #000; /* Ensures strong elements are visually distinct */
 }
+
+.back-arrow {
+    position: relative; /* Adjust based on your layout, you might need absolute or fixed depending on your navbar's behavior */
+    z-index: 10;
+    margin-top: 20px; /* Adjust this value based on your navbar's height */
+    margin-bottom: 20px;
+    margin-left: 20px; /* Space from the left edge */
+}
+
+.back-arrow a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px; /* Width of the clickable area */
+    height: 40px; /* Height of the clickable area */
+    border-radius: 20px; /* Makes it circular */
+    background-color: #f0f0f0; /* Background color of the button */
+    color: #000; /* Color of the arrow */
+    text-decoration: none;
+}
+
+.back-arrow a:hover {
+    background-color: #e0e0e0; /* Slightly darker on hover */
+}
+
+.back-arrow svg {
+    stroke: currentColor; /* SVG color inherits from anchor color */
+    
+}
+
+
 
