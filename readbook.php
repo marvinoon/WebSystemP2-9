@@ -21,6 +21,7 @@
             <div id="bookContainer" class="book">
                 <div id="textContent" class="page"></div>
                 <!-- Gpt said include the db stuff here I think -->
+                <!-- The page animation stuff is in the main.js -->
             </div>
             <div class="page-controls">
                 <button id="prevPage">Previous</button>
