@@ -96,7 +96,7 @@ $books = retrieveData();
 <!-- HTML and PHP to display the books -->
 <section class="featured-books">
     <div class="featured-container">
-        <h2 class="text-center mb-4">Featured Books</h2>
+
         <div class="row books-container flex-nowrap overflow-auto">
             <?php foreach ($books as $book): ?>
                 <div class="col-3">
@@ -104,7 +104,7 @@ $books = retrieveData();
                         <img src="images/<?php echo $book['book_cover']; ?>" class="card-img-top" alt="<?php echo $book['book_title']; ?>">
                         <div class="card-body">
                             <h5 class="card-title"><?php echo $book['book_title']; ?></h5>
-                            <p class="card-text"><?php echo $book['book_description']; ?></p>
+                            <p class="card-text"><?php echo $book['author']; ?></p>
                             <div class="product-button">
                                 <a href="productpage.php?book_id=<?php echo $book['book_id']; ?>" class="product-btn">View Details</a>
                             </div>
