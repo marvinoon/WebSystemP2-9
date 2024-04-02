@@ -16,5 +16,21 @@ document.addEventListener("DOMContentLoaded", function() {
   
     // Set the interval for changing slides
     setInterval(nextSlide, 4000); // Change slide every 4 seconds
+    activateMenu();
   });
   
+  function activateMenu()
+  { 
+      const navLinks = document.querySelectorAll('nav a');
+      navLinks.forEach(link =>
+      {   
+          if (link.href === location.href)
+          { 
+            link.classList.add('active');
+          } 
+      });
+  } 
+
+
+
+

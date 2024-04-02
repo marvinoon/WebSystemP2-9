@@ -114,10 +114,7 @@
                     </div>
                 </div>
             </div>
-        </section>
-        <section style="text-align: center; font-size: larger; font-weight: bold; color: black;"> 
-        Placeholder Section 
-        </section>  
+        </section> 
         </main>
         <?php
         include "inc/footer.inc.php";

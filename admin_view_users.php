@@ -2,7 +2,8 @@
 <html lang="en">
 
 <head>
-    <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="css/nav.css">
+        <link rel="stylesheet" href="css/footer.css">
     <?php
     include "inc/head.inc.php"
     ?>
@@ -125,9 +126,6 @@
                     </div>
                 </div>
             </div>
-        </section>
-        <section style="text-align: center; font-size: larger; font-weight: bold; color: black;">
-            Placeholder Section
         </section>
     </main>
 

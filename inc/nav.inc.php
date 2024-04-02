@@ -24,10 +24,23 @@
                         <a class="nav-link" href="memberships.php">Memberships</a>
                     </li>
     
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link btn-custom" href="loginregister.php">Sign Up</a>
-                    </li>
-    
+                    </li> -->
+
+                    <?php 
+                        session_start();
+                        if (isset($_SESSION['email'])) {
+                            echo '<li class="nav-item">
+                                    <a class="nav-link btn-custom" href="logout.php">Logout</a>
+                                </li>';
+                        }
+                        else {
+                            echo '<li class="nav-item">
+                                    <a class="nav-link btn-custom" href="loginregister.php">Login</a>
+                                    </li>';
+                        }
+                    ?>
                 </ul>
             </div>
         </div>  
