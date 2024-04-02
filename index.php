@@ -114,10 +114,14 @@
                     </div>
                 </div>
             </div>
+<<<<<<< Updated upstream:index.php
         </section>
         <section style="text-align: center; font-size: larger; font-weight: bold; color: black;"> 
         Placeholder Section 
         </section>  
+=======
+        </section> 
+>>>>>>> Stashed changes:Project/index.php
         </main>
         <?php
         include "inc/footer.inc.php";
