@@ -34,93 +34,93 @@
                 </div>
             </section>
         </div>
-        <section class="featured-books">
-            <div class="featured-container">
-                <h2 class="text-center mb-4">Featured Books</h2>
-                <div class="row books-container flex-nowrap overflow-auto">
+            <section class="featured-books">
+                <div class="featured-container">
+                    <h2 class="text-center mb-4">Featured Books</h2>
+                    <div class="row books-container flex-nowrap overflow-auto">
+                        
+                        <?php
+                    $bookid = $quantity = $year_published = $book_title =
+                    $author = $book_language = $book_category = $book_pages = $sample_text = $book_cover = "";
+                    $success = true;
+
+                    // Call the function to retrieve data
+                    retrieveData();
                     
-                    <?php
-                $bookid = $quantity = $year_published = $book_title =
-                $author = $book_language = $book_category = $book_pages = $sample_text = $book_cover = "";
-                $success = true;
+                    function retrieveData()
+                    {
+                        // Using an array to store all books' information
+                        $books = [];
 
-                // Call the function to retrieve data
-                retrieveData();
-                
-                function retrieveData()
-{
-    // Using an array to store all books' information
-    $books = [];
+                        // Create database connection.
+                        $config = parse_ini_file('/var/www/private/db-config.ini');
+                        if (!$config) {
+                            echo "Failed to read database config file.";
+                            return []; // Return an empty array
+                        }
 
-    // Create database connection.
-    $config = parse_ini_file('/var/www/private/db-config.ini');
-    if (!$config) {
-        echo "Failed to read database config file.";
-        return []; // Return an empty array
-    }
+                        $conn = new mysqli(
+                            $config['servername'],
+                            $config['username'],
+                            $config['password'],
+                            $config['dbname']
+                        );
+                        // Check connection
+                        if ($conn->connect_error) {
+                            echo "Connection failed: " . $conn->connect_error;
+                            return []; // Return an empty array
+                        }
 
-    $conn = new mysqli(
-        $config['servername'],
-        $config['username'],
-        $config['password'],
-        $config['dbname']
-    );
-    // Check connection
-    if ($conn->connect_error) {
-        echo "Connection failed: " . $conn->connect_error;
-        return []; // Return an empty array
-    }
+                        // Prepare the statement:
+                        $stmt = $conn->prepare("SELECT * FROM books LIMIT 6;");
 
-    // Prepare the statement:
-    $stmt = $conn->prepare("SELECT * FROM books LIMIT 6;");
+                        // Execute the query statement:
+                        if (!$stmt->execute()) {
+                            echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+                        } else {
+                            $result = $stmt->get_result();
+                            while ($row = $result->fetch_assoc()) {
+                                array_push($books, $row); // Push each row into the array
+                            }
+                        }
+                        $stmt->close();
+                        $conn->close();
 
-    // Execute the query statement:
-    if (!$stmt->execute()) {
-        echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
-    } else {
-        $result = $stmt->get_result();
-        while ($row = $result->fetch_assoc()) {
-            array_push($books, $row); // Push each row into the array
-        }
-    }
-    $stmt->close();
-    $conn->close();
+                        return $books; // Return the array of books
+                    }
 
-    return $books; // Return the array of books
-}
+                    // Call the function to retrieve data and store it in $books array
+                    $books = retrieveData();
+                    ?>
 
-// Call the function to retrieve data and store it in $books array
-$books = retrieveData();
-?>
+                    <!-- HTML and PHP to display the books -->
+                    <section class="featured-books">
+                        <div class="featured-container">
 
-<!-- HTML and PHP to display the books -->
-<section class="featured-books">
-    <div class="featured-container">
-
-        <div class="row books-container flex-nowrap overflow-auto">
-            <?php foreach ($books as $book): ?>
-                <div class="col-3">
-                    <div class="card">
-                        <img src="images/<?php echo $book['book_cover']; ?>" class="card-img-top" alt="<?php echo $book['book_title']; ?>">
-                        <div class="card-body">
-                            <h5 class="card-title"><?php echo $book['book_title']; ?></h5>
-                            <p class="card-text"><?php echo $book['author']; ?></p>
-                            <div class="product-button">
-                                <a href="productpage.php?book_id=<?php echo $book['book_id']; ?>" class="product-btn">View Details</a>
+                            <div class="row books-container flex-nowrap overflow-auto">
+                                <?php foreach ($books as $book): ?>
+                                    <div class="col-3">
+                                        <div class="card">
+                                            <img src="images/<?php echo $book['book_cover']; ?>" class="card-img-top" alt="<?php echo $book['book_title']; ?>">
+                                            <div class="card-body">
+                                                <h5 class="card-title"><?php echo $book['book_title']; ?></h5>
+                                                <p class="card-text"><?php echo $book['author']; ?></p>
+                                                <div class="product-button">
+                                                    <a href="productpage.php?book_id=<?php echo $book['book_id']; ?>" class="product-btn">View Details</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php endforeach; ?>
                             </div>
                         </div>
+                    </section>
                     </div>
                 </div>
-            <?php endforeach; ?>
-        </div>
-    </div>
-</section>
-                </div>
-            </div>
-        </section> 
+            </section> 
         </main>
         <?php
-        include "inc/footer.inc.php";
+            include "inc/footer.inc.php";
         ?>
     </body>
 </html>
