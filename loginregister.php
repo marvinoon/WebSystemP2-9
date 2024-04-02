@@ -12,10 +12,15 @@
         <?php
             include "inc/nav.inc.php";
         ?>
+        <div class="back-arrow">
+            <a href="javascript:history.back()" aria-label="Go back">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+            </a>
+        </div>
         <br>
-        <br>
+        <br>       
             <div class="cont">
-                <form class="form sign-in" action="#" method="post">
+                <form class="form sign-in" action="process_login.php" method="post">
                     <h2>Welcome</h2>
                     <label>
                         <span>Email</span>
@@ -26,7 +31,7 @@
                         <input required type="password" id="pwd" name="pwd" class="form-control">
                     </label>
                     <p class="forgot-pass">Forgot password?</p>
-                    <button type="button" class="submit">Sign In</button>
+                    <button type="submit" class="submit">Sign In</button>
                 </form>
                 <div class="sub-cont">
                     <div class="img">
@@ -43,7 +48,7 @@
                             <span class="m--in">Sign In</span>
                         </div>
                     </div>
-                    <form class="form sign-up" action="#" method="post">
+                    <form class="form sign-up" action="process_register.php" method="post">
                         <h2>Create your Account</h2>
                         <label>
                             <span>First Name</span>
@@ -73,7 +78,7 @@
                             <span>Confirm Password</span>
                             <input required type="password" id="pwd_confirm" name="pwd_confirm" class="form-control">
                         </label>
-                        <button type="button" class="submit">Sign Up</button>
+                        <button type="submit" class="submit">Sign Up</button>
                     </form>
                 </div>
             </div>

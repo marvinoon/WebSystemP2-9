@@ -1,17 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-        <link rel="stylesheet" href="css/membership.css">
-        <link rel="stylesheet" href="css/nav.css">
-        <link rel="stylesheet" href="css/footer.css">
-        <?php
-            include "inc/head.inc.php"
-        ?>
-    </head>
+    <link rel="stylesheet" href="css/membership.css">
+    <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <?php
+    include "inc/head.inc.php"
+    ?>
+</head>
+
 <body>
     <?php
-        include "inc/nav.inc.php";
+    include "inc/nav.inc.php";
     ?>
+    <div class="back-arrow">
+        <a href="javascript:history.back()" aria-label="Go back">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                
+        </a>
+    </div>
     <header class="S2">
         <div class="heading">
             <h1 id="headline">Our Membership Plans!</h1>
@@ -26,9 +34,9 @@
                         <div class="plan-box">
                             <h3>Free Tier</h3>
                             <ul>
-                                <li>Benefit 1</li>
-                                <li>Benefit 2</li>
-                                <li>More...</li>
+                                <li>Preview select content from each book</li>
+                                <li>Post and read community reviews</li>
+                                <li>Monthly curated book selection</li>
                             </ul>
                             <a href="loginregister.php" class="btn btn-primary">Sign Up Now</a>
                         </div>
@@ -38,9 +46,9 @@
                         <div class="plan-box">
                             <h3>Regular Tier</h3>
                             <ul>
-                                <li>Benefit 1</li>
-                                <li>Benefit 2</li>
-                                <li>More...</li>
+                                <li>Access to the full content of each book</li>
+                                <li>Loan duration extended to 15 days</li>
+                                <li>Maximum of 1 active book loan at a time</li>
                             </ul>
                             <a href="loginregister.php" class="btn btn-primary">Sign Up Now</a>
                         </div>
@@ -50,9 +58,10 @@
                         <div class="plan-box">
                             <h3>Premium Tier</h3>
                             <ul>
-                                <li>Benefit 1</li>
-                                <li>Benefit 2</li>
-                                <li>More...</li>
+                                <li>All Regular Tier benefits, plus:</li>
+                                <li>Extended loan duration of 30 days</li>
+                                <li>Maximum of 5 active book loans simultaneously</li>
+                                <li>Access to exclusive Premium-only book selections</li>
                             </ul>
                             <a href="loginregister.php" class="btn btn-primary">Sign Up Now</a>
                         </div>
@@ -65,4 +74,5 @@
     include "inc/footer.inc.php";
     ?>
 </body>
+
 </html>
