@@ -1,9 +1,10 @@
 <!DOCTYPE html> 
 <html lang="en"> 
     <head> 
-        <link rel="stylesheet" href="css/productpage.css"> 
+        
         <link rel="stylesheet" href="css/nav.css"> 
         <link rel="stylesheet" href="css/footer.css"> 
+        <link rel="stylesheet" href="css/productpage.css"> 
         <?php 
             include "inc/head.inc.php" 
         ?> 
