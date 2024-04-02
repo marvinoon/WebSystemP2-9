@@ -105,9 +105,10 @@
                                 <p><strong>Quantity Remaining:</strong> <?php echo htmlspecialchars($book['quantity']); ?></p>
                             </div>
                             <!-- Add to Account Button -->
-                            <div class="button-add-to-account"> 
-                                <button class="btn-add-to-account">Add to Account</button>
-                            </div>
+                            <div class="button-add-to-account">  
+                                <a href="#" class="btn-add-to-account">Add to Account</a>
+                                <a href="readbook.php" class="btn-read-book">Read Book</a>  
+                            </div> 
                         </div>
                     </div>
                 </div>
