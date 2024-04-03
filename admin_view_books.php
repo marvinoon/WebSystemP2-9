@@ -26,7 +26,7 @@
             <div class="featured-container">
                 <h2 class="text-center mb-4">Books</h2>
                 <div class="text-center">
-                    <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Book (Test)</button>
+                    <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Book</button>
 
                     <!-- Modal -->
                     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -277,7 +277,10 @@
                     }
                 ?>
 
-                <!-- print from db -->
+                
+
+                <div class="row books-container flex-nowrap overflow-auto">
+                    <!-- print from db -->
                 <?php
                     //global $fname, $lname, $email, $pwd, $errorMsg, $success;
                     $errorMsg = "";
@@ -308,26 +311,27 @@
                     else
                     {
                         // Prepare the statement:
-                        $stmt = $conn->prepare("SELECT id FROM books");
-                        $result = $conn->query($stmt);
+                        $stmt = $conn->prepare("SELECT * FROM books");
+                        $stmt->execute();
+                        $result = $stmt->get_result();
 
-                        if ($result->num_rows > 0)
-                        {
-                            while($row = $result->fetch_assoc())
+                        if ($result->num_rows > 0) {
+                            while ($row = $result->fetch_assoc()) 
                             {
-                                echo "<br> id: ". $row["id"];   
+                                echo '
+                                <div class="col-3">
+                                    <div class="card">
+                                        <img src="images/Example Book.png" class="card-img-top" alt="Book ' . $row["book_id"] . '">
+                                        <div class="card-body">
+                                            <h5 class="card-title">' . $row["book_title"] . '</h5>
+                                            <p class="card-text">Book ' . $row["sample_text"] . '</p>
+                                            <button type="button" class="btn btn-warning" onclick="openModal(' . $row["book_id"] . ')">Edit</button>
+                                            <button type="button" class="btn btn-danger" onclick="openModal(' . $row["book_id"] . ')">Delete</button>
+                                        </div>
+                                    </div>
+                                </div>';
                             }
                         }
-                            
-                        // Bind & execute the query statement:
-                        $stmt->bind_param("sssssss", $quantity, $published, $title, $category, $language, $pages, $sample);
-                        if (!$stmt->execute())
-                        {
-                            $errorMsg = "Execute failed: (" . $stmt->errno . ") " .
-                                $stmt->error;
-                            $success = false;
-                        }
-                        $stmt->close();
                     }
                     $conn->close();
                     }
@@ -335,72 +339,20 @@
                     //inform success of fail
                     if ($success)
                     {
-                        echo "<script>alert('Success');</script>";
+                        echo "<script>alert('Generation Success');</script>";
                     }
                     else
                     {
                         echo "<script>alert('$errorMsg');</script>";
                     }
                 ?>
-
-                <div class="row books-container flex-nowrap overflow-auto">
-                    <!-- Book 1 -->
-                    <div class="col-3">
-                        <div class="card">
-                            <img src="images/Example Book.png" class="card-img-top" alt="Book 1">
-                            <div class="card-body">
-                                <h5 class="card-title">Book Title 1</h5>
-                                <p class="card-text">Book 1 description...</p>
-                                <button type="button" class="btn btn-warning">Edit</button>
-                                <button type="button" class="btn btn-danger">Delete</button>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Book 2 -->
-                    <div class="col-3">
-                        <div class="card">
-                            <img src="images/Example Book.png" class="card-img-top" alt="Book 2">
-                            <div class="card-body">
-                                <h5 class="card-title">Book Title 2</h5>
-                                <p class="card-text">Book 2 description...</p>
-                                <button type="button" class="btn btn-warning">Edit</button>
-                                <button type="button" class="btn btn-danger">Delete</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-3">
-                        <div class="card">
-                            <img src="images/Example Book.png" class="card-img-top" alt="Book 3">
-                            <div class="card-body">
-                                <h5 class="card-title">Book Title 3</h5>
-                                <p class="card-text">Book 3 description...</p>
-                                <button type="button" class="btn btn-warning">Edit</button>
-                                <button type="button" class="btn btn-danger">Delete</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-3">
-                        <div class="card">
-                            <img src="images/Example Book.png" class="card-img-top" alt="Book 4">
-                            <div class="card-body">
-                                <h5 class="card-title">Book Title 4</h5>
-                                <p class="card-text">Book 4 description...</p>
-                                <button type="button" class="btn btn-warning">Edit</button>
-                                <button type="button" class="btn btn-danger">Delete</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-3">
-                        <div class="card">
-                            <img src="images/Example Book.png" class="card-img-top" alt="Book 5">
-                            <div class="card-body">
-                                <h5 class="card-title">Book Title 5</h5>
-                                <p class="card-text">Book 5 description...</p>
-                                <button type="button" class="btn btn-warning">Edit</button>
-                                <button type="button" class="btn btn-danger">Delete</button>
-                            </div>
-                        </div>
-                    </div>
+                <script>
+                    alert("Test");
+                    function openModal(bookId) {
+                        alert(bookId);
+                        $('#editModal').modal('show');
+                    }
+                </script>
                     <div class="col-3">
                         <div class="card">
                             <img src="images/Example Book.png" class="card-img-top" alt="Book 6">
@@ -441,6 +393,35 @@
                 </div>
             </div>
         </section>
+        <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editModalLabel">Edit Book</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="editForm" onsubmit="saveChanges(event)">
+                    <input type="hidden" id="bookIdInput" name="book_id">
+                    <div class="form-group">
+                        <label for="titleInput">Title</label>
+                        <input type="text" class="form-control" id="titleInput" name="title">
+                    </div>
+                    <div class="form-group">
+                        <label for="descriptionInput">Description</label>
+                        <textarea class="form-control" id="descriptionInput" name="description"></textarea>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
     </main>
 
     <?php
@@ -448,4 +429,4 @@
     ?>
 </body>
 
-</html>
+</html> 

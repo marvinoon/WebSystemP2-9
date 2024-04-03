@@ -299,3 +299,31 @@ input {
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
 }
+.back-arrow {
+    position: relative; /* Adjust based on your layout, you might need absolute or fixed depending on your navbar's behavior */
+    z-index: 10;
+    margin-top: 20px; /* Adjust this value based on your navbar's height */
+    margin-bottom: 20px;
+    margin-left: 20px; /* Space from the left edge */
+}
+
+.back-arrow a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px; /* Width of the clickable area */
+    height: 40px; /* Height of the clickable area */
+    border-radius: 20px; /* Makes it circular */
+    background-color: #f0f0f0; /* Background color of the button */
+    color: #000; /* Color of the arrow */
+    text-decoration: none;
+}
+
+.back-arrow a:hover {
+    background-color: #e0e0e0; /* Slightly darker on hover */
+}
+
+.back-arrow svg {
+    stroke: currentColor; /* SVG color inherits from anchor color */
+    
+}
