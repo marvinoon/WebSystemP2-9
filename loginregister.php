@@ -5,7 +5,8 @@
         <link rel="stylesheet" href="css/nav.css">
         <link rel="stylesheet" href="css/footer.css">
         <?php
-            include "inc/head.inc.php"
+            include "inc/head.inc.php";
+            require_once "zebra_session/session_start.php";
         ?>
     </head>
     <body>
@@ -67,7 +68,7 @@
                         </label>
                         <label>
                             <span>Password</span>
-                            <input required type="password" id="pwd" name="pwd" class="form-control">
+                            <input required type="password" id="pwd" name="pwd" class="form-control" minlength="8">
                         </label>
                         <label>
                             <span>Confirm Password</span>

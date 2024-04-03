@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <link rel="stylesheet" href="css/nav.css">
-        <link rel="stylesheet" href="css/footer.css">
+<link rel="stylesheet" href="css/footer.css">
     <?php 
         include "inc/head.inc.php";
     ?>
@@ -55,8 +55,8 @@
                         $errorMsg .= "Email already exists.";
                         $success = false;
                     }
+                }
         }
-    }
 
         //password
         if (empty($_POST["pwd"]))
@@ -71,6 +71,10 @@
         else if ($_POST["pwd"] != $_POST["pwd_confirm"])
         {
             $errorMsg .= "Passwords do not match.<br>";
+            $success = false;
+        }
+        else if (!preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z\d])[\w\d\W]{8,}$/', $_POST["pwd"])) {
+            $errorMsg .= "Password must meet the following requirements:<br> Be at least 8 characters long <br>Contain at least one uppercase letter <br>Contain at least one lowercase letter <br>Contain at least one digit <br>Contain at least one special character <br>";
             $success = false;
         }
         else
@@ -99,8 +103,11 @@
         }
         else
         {
-            echo "<h4>The following input errors were detected:</h4>";
-            echo "<p>" . $errorMsg . "</p>";
+            echo '<div style="text-align: center;">';
+            echo "<h1 style='color: red;'>Uh Oh</h1>";
+            echo '<h4>The following input errors were detected:</h4>';
+            echo '<p>' . $errorMsg . '</p>';
+            echo '</div>';
         }
 
         /*
@@ -187,14 +194,6 @@
                             $stmt->error;
                         $success = false;
                     } 
-                    else
-                    {
-                        // Get the user ID of the inserted record
-                        $user_id = $stmt->insert_id;
-        
-                        // Store the user ID in the session
-                        $_SESSION['user_id'] = $user_id;
-                    }
                     $stmt->close();
                 } 
 

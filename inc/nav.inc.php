@@ -1,3 +1,7 @@
+<?php
+    require_once "zebra_session/session_start.php";
+?>
+
 <nav class="navbar navbar-expand-md navbar-custom navbar-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="#" >
@@ -29,18 +33,20 @@
                     </li> -->
 
                     <?php 
-                        session_start();
-                        if (isset($_SESSION['email'])) {
+                        if (isset($_SESSION['user_id'])) {
                             echo '<li class="nav-item">
-                                    <a class="nav-link btn-custom" href="logout.php">Logout</a>
-                                </li>';
+                            <span class="nav-link btn-custom">Welcome, ' . $_SESSION['lname'] . '</span>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link btn-custom" href="logout.php">Logout</a>
+                          </li>';
                         }
                         else {
                             echo '<li class="nav-item">
                                     <a class="nav-link btn-custom" href="loginregister.php">Login</a>
                                     </li>';
                         }
-                    ?>
+                    ?> 
                 </ul>
             </div>
         </div>  

@@ -1,6 +1,7 @@
 <?php
 // Create database connection.
 $config = parse_ini_file('/var/www/private/db-config.ini');
+// $config = parse_ini_file('db-config.ini');
 if (!$config) {
     $errorMsg = "Failed to read database config file.";
     $success = false;
@@ -12,8 +13,8 @@ if (!$config) {
         $config['dbname']
     );
     // Check connection
-    if ($conn->connect_error) {
-        $errorMsg = "Connection failed: " . $conn->connect_error;
+    if ($link->connect_error) {
+        $errorMsg = "Connection failed: " . $link->connect_error;
         $success = false;
     }
 }
