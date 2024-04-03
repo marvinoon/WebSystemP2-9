@@ -45,6 +45,14 @@
                             <a class="nav-link btn-custom" href="logout.php">Logout</a>
                           </li>';
                         }
+                       else if (isset($_SESSION['admin_id'])) {
+                            echo '<li class="nav-item">
+                            <span class="nav-link btn-custom">Welcome, ' . $_SESSION['lname'] . '</span>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link btn-custom" href="logout.php">Logout</a>
+                          </li>';
+                        } 
                         else {
                             echo '<li class="nav-item">
                                     <a class="nav-link btn-custom" href="loginregister.php">Login</a>
