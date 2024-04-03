@@ -19,6 +19,10 @@
                     <li class="nav-item">
                         <a class="nav-link" href="index.php">Home</a>
                     </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="catalog.php">Catalog</a>
+                    </li>
     
                     <li class="nav-item">
                         <a class="nav-link" href="aboutus.php">About Us</a>

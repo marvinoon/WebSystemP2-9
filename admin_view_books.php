@@ -189,7 +189,7 @@
                         //If success 
                         if ($success)
                         {
-                            echo "<script>alert('Success');</script>";
+                            
                             saveBookToDB($title, $image, $quantity, $published, $language, $category, $pages, $sample);
                         }
                         else
@@ -251,7 +251,7 @@
                         {
                             // Prepare the statement:
                             $stmt = $conn->prepare("INSERT INTO books
-                                (quantity, year_publised, book_title, author, book_language, book_pages, sample_text) VALUES (?, ?, ?, ?, ?, ?, ?)"); 
+                                (quantity, year_published, book_title, author, book_language, book_pages, sample_text) VALUES (?, ?, ?, ?, ?, ?, ?)"); 
 
                             // Bind & execute the query statement:
                             $stmt->bind_param("sssssss", $quantity, $published, $title, $category, $language, $pages, $sample);

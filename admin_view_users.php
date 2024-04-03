@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+        <link rel="stylesheet" href="css/aboutus.css">
         <link rel="stylesheet" href="css/nav.css">
         <link rel="stylesheet" href="css/footer.css">
     <?php

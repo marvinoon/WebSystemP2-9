@@ -45,7 +45,7 @@
                             <img src="images/Example Book.png" class="card-img-top" alt="Book 1">
                             <div class="card-body">
                                 <h5 class="card-title">Book Title 1</h5>
-                                <p class="card-text">Book 1 description...</p>
+                                <p class="card-text">Book 1 Author</p>
                                 <div class="product-button">
                                     <a href="productpage.php" class="product-btn">View Details</a>
                                 </div>
@@ -58,7 +58,7 @@
                             <img src="images/Example Book.png" class="card-img-top" alt="Book 2">
                             <div class="card-body">
                                 <h5 class="card-title">Book Title 2</h5>
-                                <p class="card-text">Book 2 description...</p>
+                                <p class="card-text">Book 2 Author</p>
                                 <div class="product-button">
                                     <a href="productpage.php" class="product-btn">View Details</a>
                                 </div>
@@ -70,7 +70,7 @@
                             <img src="images/Example Book.png" class="card-img-top" alt="Book 3">
                             <div class="card-body">
                                 <h5 class="card-title">Book Title 3</h5>
-                                <p class="card-text">Book 3 description...</p>
+                                <p class="card-text">Book 3 Author</p>
                                 <div class="product-button">
                                     <a href="productpage.php" class="product-btn">View Details</a>
                                 </div>
@@ -82,7 +82,7 @@
                             <img src="images/Example Book.png" class="card-img-top" alt="Book 4">
                             <div class="card-body">
                                 <h5 class="card-title">Book Title 4</h5>
-                                <p class="card-text">Book 4 description...</p>
+                                <p class="card-text">Book 4 Author</p>
                                 <div class="product-button">
                                     <a href="productpage.php" class="product-btn">View Details</a>
                                 </div>
@@ -94,7 +94,7 @@
                             <img src="images/Example Book.png" class="card-img-top" alt="Book 5">
                             <div class="card-body">
                                 <h5 class="card-title">Book Title 5</h5>
-                                <p class="card-text">Book 5 description...</p>
+                                <p class="card-text">Book 5 Author</p>
                                 <div class="product-button">
                                     <a href="productpage.php" class="product-btn">View Details</a>
                                 </div>
@@ -106,7 +106,7 @@
                             <img src="images/Example Book.png" class="card-img-top" alt="Book 6">
                             <div class="card-body">
                                 <h5 class="card-title">Book Title 6</h5>
-                                <p class="card-text">Book 6 description...</p>
+                                <p class="card-text">Book 6 Author</p>
                                 <div class="product-button">
                                     <a href="productpage.php" class="product-btn">View Details</a>
                                 </div>
