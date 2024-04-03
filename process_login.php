@@ -7,6 +7,7 @@
         include "inc/head.inc.php";
         include "./session_start.php";
         require "./Zebra_Session.php";
+        // $session = new Zebra_Session();
         
     ?>
 </head>
@@ -52,6 +53,7 @@
         {
             // $_SESSION['logged_in'] = true;
             $_SESSION['email'] = $email;
+            $session->set('user_id', $user_id);
             echo "<h4><strong>Welcome back, ".$fname." ".$lname."</strong></h4>";
             echo '<div class="mb-4" style="margin-top: 10px;"> <a href="/"> <button id="backtologinbtn" class="btn btn-primary">Return to Home</button> </a> </div>';
         }
