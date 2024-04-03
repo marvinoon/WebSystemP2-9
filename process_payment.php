@@ -10,7 +10,11 @@ if (empty($_POST["name_on_card"])) {
     $success = false;
 } else {
     $name = sanitize_input($_POST["name_on_card"]);
-    // Additional validation if needed
+    if (!preg_match("/^[a-zA-Z ]*$/", $name)) {
+        $errorMsg .= "Name on card cannot contain special characters.<br>";
+        $success = false;
+    }
+    
 }
 
 // Card Number
@@ -19,7 +23,10 @@ if (empty($_POST["card_number"])) {
     $success = false;
 } else {
     $card = sanitize_input($_POST["card_number"]);
-    // Additional validation if needed
+    if (!preg_match('/^\d{16}$/', $card)) {
+        $errorMsg .= "Card number must be a 16-digit number.<br>";
+        $success = false;
+    }
 }
 
 // Expiration Month
@@ -28,7 +35,15 @@ if (empty($_POST["exp_month"])) {
     $success = false;
 } else {
     $expirymth = sanitize_input($_POST["exp_month"]);
-    // Additional validation if needed
+    // Additional validation: Check if the expiration month is in the correct format
+    if (!preg_match('/^\d{2}$/', $expirymth)) {
+        $errorMsg .= "Expiration month must be in the format MM.<br>";
+        $success = false;
+    } elseif ($expirymth < 1 || $expirymth > 12) {
+        $errorMsg .= "Expiration month must be a valid month (1-12).<br>";
+        $success = false;
+    }
+
 }
 
 // Expiration Year
@@ -37,6 +52,46 @@ if (empty($_POST["exp_year"])) {
     $success = false;
 } else {
     $expiryyear = sanitize_input($_POST["exp_year"]);
+    // Additional validation: Check if the expiration year is in the past
+    $currentYear = date("Y"); // Get the current year
+
+    if (!preg_match('/^\d{2}$/', $expiryyear)) {
+        $errorMsg .= "Expiration year must be in the format YY.<br>";
+        $success = false;
+    }
+}
+//check if card is expired
+// Expiration Month and Year
+if (empty($_POST["exp_month"]) || empty($_POST["exp_year"])) {
+    $errorMsg .= "Expiration month and year are required.<br>";
+    $success = false;
+} else {
+    $expirymth = sanitize_input($_POST["exp_month"]);
+    $expiryyear = sanitize_input($_POST["exp_year"]);
+
+    // Extract only the first two characters as the month
+    $expirymth = substr($expirymth, 0, 2);
+
+    // Extract only the first four characters as the year
+    $expiryyear = substr($expiryyear, 0, 4);
+
+    // Additional validation: Check if the expiration month and year are in the correct format
+    if (!preg_match('/^\d{2}$/', $expirymth) || !preg_match('/^\d{4}$/', $expiryyear)) {
+        $errorMsg .= "Expiration month and year must be in the format MM/YYYY.<br>";
+        $success = false;
+    } else {
+        // Convert the expiration month and year to a DateTime object
+        $expiryDate = DateTime::createFromFormat('Y-m', $expiryyear . '-' . $expirymth);
+
+        // Get the current date
+        $currentDate = new DateTime();
+
+        // Additional validation: Check if the expiration date is in the past
+        if ($expiryDate < $currentDate) {
+            $errorMsg .= "Expiration date cannot be in the past.<br>";
+            $success = false;
+        }
+    }
     // Additional validation if needed
 }
 
@@ -46,7 +101,10 @@ if (empty($_POST["cvv"])) {
     $success = false;
 } else {
     $cvv = sanitize_input($_POST["cvv"]);
-    // Additional validation if needed
+    // Additional validation: Check if CVV consists of exactly three digits
+    if (!preg_match('/^\d{3}$/', $cvv)) {
+        $errorMsg .= "CVV must be a 3-digit number.<br>";
+        $success = false;}
 }
 
 // Email
@@ -74,6 +132,12 @@ if ($user_id !== false) {
         echo "<h1 style='color: red;'>Uh Oh</h1>";
         echo '<h4>The following input errors were detected:</h4>';
         echo '<p>' . $errorMsg . '</p>';
+        // Dynamically set the URL based on membership type
+    $paymentPage = "payment_" . strtolower($membership_type) . ".php";
+    echo '<div class="mb-4" style="margin-top: 10px;">';
+    echo '<a href="' . $paymentPage . '">';
+    echo '<button id="returnLoginBtn" class="btn btn-primary">Return to Payment</button>';
+    echo '</a>';
         echo '</div>';
     }
 } else {
@@ -176,3 +240,8 @@ function getUserIDFromEmail($email)
     return $user_id;
 }
 ?>
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
