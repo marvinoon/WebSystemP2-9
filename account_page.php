@@ -13,6 +13,7 @@
     // Include necessary files
     include "inc/head.inc.php";
     include "inc/nav.inc.php";
+    require_once "zebra_session/session_start.php";
 
 
     // Fetch user details from the database based on the user ID stored in the session
