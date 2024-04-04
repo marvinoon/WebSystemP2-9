@@ -5,6 +5,7 @@
 <link rel="stylesheet" href="css/footer.css">
     <?php 
         include "inc/head.inc.php";
+        require_once "zebra_session/session_start.php";
     ?>
 </head>
 <body>
@@ -12,6 +13,7 @@
         include "inc/nav.inc.php";
     ?>
     <?php
+    include_once "db_connect.php";
         $email = $errorMsg = $fname = $lname = $pwd_hashed = "";
         $success = true;
         // Initialize error message variable
@@ -66,7 +68,7 @@
         $pwd_old = sanitize_input($_POST["pwd_old"]);
 
         // Verify the old password
-        if (!verifyOldPassword($pwd_old,$user_id)) {
+        if (!verifyOldPassword($pwd_old,$user_id, $link)) {
             $errorMsg .= "Old password is incorrect.<br>";
             $success = false;
         }
@@ -90,7 +92,7 @@ if (!empty($_POST["pwd"])) {
         
         if ($success)
         {
-            updateMemberToDB($user_id);
+            updateMemberToDB($user_id, $link);
             echo "<h4>Registration successful!</h4>";
             //add if statement if membership == Regular or ==Premium bring to payment_regular.php or payment_premium.php
             // Redirect to payment page based on membership type
@@ -124,37 +126,13 @@ if (!empty($_POST["pwd"])) {
 
        
         // Function to verify the old password
-function verifyOldPassword($pwd_old,$user_id)
+function verifyOldPassword($pwd_old,$user_id, $link)
 {error_reporting(E_ALL);
     ini_set('display_errors', 1);
     global $email, $pwd_hashed, $errorMsg, $success;
 
-    
-
-    // Create database connection.
-    $config = parse_ini_file('/var/www/private/db-config.ini');
-    if (!$config) {
-        $errorMsg = "Failed to read database config file.";
-        $success = false;
-        return false;
-    }
-
-    $conn = new mysqli(
-        $config['servername'],
-        $config['username'],
-        $config['password'],
-        $config['dbname']
-    );
-
-    // Check connection
-    if ($conn->connect_error) {
-        $errorMsg = "Connection failed: " . $conn->connect_error;
-        $success = false;
-        return false;
-    }
-
     // Prepare the statement to fetch user details by user ID
-    $stmt = $conn->prepare("SELECT * FROM user WHERE user_id=?");
+    $stmt = $link->prepare("SELECT * FROM user WHERE user_id=?");
     $stmt->bind_param("i", $user_id);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -169,133 +147,41 @@ function verifyOldPassword($pwd_old,$user_id)
         if (!password_verify($pwd_old, $pwd_hashed)) {
             // Close the statement and connection
             $stmt->close();
-            $conn->close();
+            // $link->close();
             return false;
         } else {
             // Close the statement and connection
             $stmt->close();
-            $conn->close();
+            // $link->close();
             return true;
         }
     } else {
         // Close the statement and connection
         $stmt->close();
-        $conn->close();
+        // $link->close();
         return false;
     }
+    $link->close();
 }
 
 
-        /*
-        * Helper function to write the member data to the database.
-        */
-//         function updateMemberToDB($user_id)
-//         { error_reporting(E_ALL);
-//             ini_set('display_errors', 1);
-//             global $fname, $lname, $email, $pwd_hashed, $errorMsg, $success;
-            
-//             // Create database connection.
-//             $config = parse_ini_file('/var/www/private/db-config.ini');
-//             if (!$config)
-//             { 
-//                 $errorMsg = "Failed to read database config file.";
-//                 $success = false;
-//             } 
-//             else
-//             { 
-//                 $conn = new mysqli(
-//                     $config['servername'],
-//                     $config['username'],
-//                     $config['password'],
-//                     $config['dbname']
-//                 );
-
-//                 // Check connection
-//                 if ($conn->connect_error)
-//                 { 
-//                     $errorMsg = "Connection failed: " . $conn->connect_error;
-//                     $success = false;
-//                 } 
-//                 else
-//                 { 
-//                     // Prepare the base update statement:
-//                     $updateStmt = "UPDATE user SET";
-
-//                     // Initialize an array to store the parameters and their types:
-//                     $params = array();
-//                     $types = "";
-
-//                     // Check if the first name field is not empty, and include it in the update statement:
-//                     if (!empty($fname)) {
-//                         $updateStmt .= " fname = ?,";
-//                         $params[] = $fname;
-//                         $types .= "s";
-//                     }
-
-//                     // Check if the last name field is not empty, and include it in the update statement:
-//                     if (!empty($lname)) {
-//                         $updateStmt .= " lname = ?,";
-//                         $params[] = $lname;
-//                         $types .= "s";
-//                     }
-
-//                     // Check if the email field is not empty, and include it in the update statement:
-//                     if (!empty($email)) {
-//                         $updateStmt .= " email = ?,";
-//                         $params[] = $email;
-//                         $types .= "s";
-//                     }
-
-//                     // Check if the password field is not empty, and include it in the update statement:
-//                     if (!empty($pwd_hashed)) {
-//                         $updateStmt .= " password = ?,";
-//                         $params[] = $pwd_hashed;
-//                         $types .= "s";
-//                     }
-
-//                     // Trim the trailing comma from the update statement:
-//                     $updateStmt = rtrim($updateStmt, ",");
-
-//                     // Add the WHERE clause:
-//                     $updateStmt .= " WHERE user_id = ?";
-// echo $updateStmt;
-//                     // Add the user ID parameter and its type:
-//                     $params[] = $user_id;
-//                     $types .= "i";
-//                     // Prepare the statement:
-//                     $stmt = $conn->prepare($updateStmt);
-
-//                     // Bind & execute the query statement:
-//                     $stmt->bind_param("sssss", $fname, $lname, $email, $pwd_hashed);
-//                     if (!$stmt->execute())
-//                     { 
-//                         $errorMsg = "Execute failed: (" . $stmt->errno . ") " .
-//                             $stmt->error;
-//                         $success = false;
-//                     } 
-//                     $stmt->close();
-//                 } 
-
-//                 $conn->close();
-//                 } 
-//             }
-function updateMemberToDB($user_id) {
+function updateMemberToDB($user_id, $link) {
     global $fname, $lname, $email, $pwd_hashed, $errorMsg, $success;
     
-    // Create database connection.
-    $config = parse_ini_file('/var/www/private/db-config.ini');
-    if (!$config) {
-        $errorMsg = "Failed to read database config file.";
-        $success = false;
-        return;
-    }
+    // // Create database connection.
+    // $config = parse_ini_file('/var/www/private/db-config.ini');
+    // if (!$config) {
+    //     $errorMsg = "Failed to read database config file.";
+    //     $success = false;
+    //     return;
+    // }
     
-    $conn = new mysqli($config['servername'], $config['username'], $config['password'], $config['dbname']);
-    if ($conn->connect_error) {
-        $errorMsg = "Connection failed: " . $conn->connect_error;
-        $success = false;
-        return;
-    }
+    // $conn = new mysqli($config['servername'], $config['username'], $config['password'], $config['dbname']);
+    // if ($conn->connect_error) {
+    //     $errorMsg = "Connection failed: " . $conn->connect_error;
+    //     $success = false;
+    //     return;
+    // }
     
     // Initialize the update statement.
     $updateStmt = "UPDATE user SET";
@@ -336,7 +222,7 @@ function updateMemberToDB($user_id) {
     $types .= "i";
     
     // Prepare the statement.
-    $stmt = $conn->prepare($updateStmt);
+    $stmt = $link->prepare($updateStmt);
     
     // Dynamically bind parameters
     $stmt->bind_param($types, ...$params);
@@ -349,7 +235,7 @@ function updateMemberToDB($user_id) {
     
     // Close the statement and connection.
     $stmt->close();
-    $conn->close();
+    $link->close();
 }
 
         ?>
