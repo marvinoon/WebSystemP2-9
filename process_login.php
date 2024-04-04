@@ -2,12 +2,10 @@
 <html lang="en">
 <head>
 <link rel="stylesheet" href="css/nav.css">
-        <link rel="stylesheet" href="css/footer.css">
+<link rel="stylesheet" href="css/footer.css">
     <?php 
         include "inc/head.inc.php";
-        include "./session_start.php";
-        require "./Zebra_Session.php";
-        
+        require_once "zebra_session/session_start.php";
     ?>
 </head>
 <body>
@@ -50,10 +48,9 @@
     
         if ($success)
         {
-            // $_SESSION['logged_in'] = true;
-            $_SESSION['email'] = $email;
-            echo "<h4><strong>Welcome back, ".$fname." ".$lname."</strong></h4>";
-            echo '<div class="mb-4" style="margin-top: 10px;"> <a href="/"> <button id="backtologinbtn" class="btn btn-primary">Return to Home</button> </a> </div>';
+            $_SESSION['lname'] = $lname;
+            header("Location: index.php");
+            exit();
         }
         else
         {
@@ -118,6 +115,9 @@
                     $fname = $row["fname"];
                     $lname = $row["lname"];
                     $pwd_hashed = $row["password"];
+
+                    $user_id = $row["user_id"];
+                    $_SESSION['user_id'] = $user_id;
                
                     // Check if the password matches:
                     if (!password_verify($_POST["pwd"], $pwd_hashed))

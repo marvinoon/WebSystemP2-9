@@ -5,14 +5,32 @@
         <link rel="stylesheet" href="css/nav.css"> 
         <link rel="stylesheet" href="css/footer.css"> 
         <link rel="stylesheet" href="css/productpage.css"> 
-        <?php 
-            include "inc/head.inc.php" 
-        ?> 
     </head> 
     <body> 
-    <?php 
-        include "inc/nav.inc.php"; 
-    ?> 
+    <?php include "inc/head.inc.php";
+            require_once "zebra_session/session_start.php";
+        ?>
+    </head>
+    
+    <body>
+    <?php
+        include "inc/nav.inc.php";
+    ?>
+        <main class="container">
+            <header>
+                <div class="row mt-3 nav-container">
+                    <div class="col-sm-12 col-md-6">
+                        ADD BOOKS TO YOUR LIST
+                    </div>
+                    <nav class="col-sm-12 col-md-6 nav-item">
+                        <ul>              
+                            <li><a href="#"><i class="fa-solid fa-user"></i><span>Account</span></a></li>
+                            <li><a href="#"><i class="fa-solid fa-heart"></i><span>Wishlist</span></a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </header>
+
     <body> 
         <div class="back-arrow">
             <a href="javascript:history.back()" aria-label="Go back">
@@ -29,6 +47,7 @@
                     echo "Failed to read database config file.";
                     return null;
                 }
+            
 
                 $conn = new mysqli(
                     $config['servername'],

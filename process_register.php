@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <link rel="stylesheet" href="css/nav.css">
-        <link rel="stylesheet" href="css/footer.css">
+<link rel="stylesheet" href="css/footer.css">
     <?php 
         include "inc/head.inc.php";
     ?>
@@ -14,7 +14,6 @@
     <?php
         $email = $errorMsg = $fname = $lname = $pwd_hashed = "";
         $success = true;
-        
        //first name
         $fname = sanitize_input($_POST["fname"]);
         if (!preg_match("/^[a-zA-Z ]*$/", $fname)) {
@@ -55,8 +54,8 @@
                         $errorMsg .= "Email already exists.";
                         $success = false;
                     }
+                }
         }
-    }
 
         //password
         if (empty($_POST["pwd"]))
@@ -71,6 +70,10 @@
         else if ($_POST["pwd"] != $_POST["pwd_confirm"])
         {
             $errorMsg .= "Passwords do not match.<br>";
+            $success = false;
+        }
+        else if (!preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z\d])[\w\d\W]{8,}$/', $_POST["pwd"])) {
+            $errorMsg .= "Password must meet the following requirements:<br> Be at least 8 characters long <br>Contain at least one uppercase letter <br>Contain at least one lowercase letter <br>Contain at least one digit <br>Contain at least one special character <br>";
             $success = false;
         }
         else
@@ -94,13 +97,34 @@
         {
             saveMemberToDB();
             echo "<h4>Registration successful!</h4>";
+            //add if statement if membership == Regular or ==Premium bring to payment_regular.php or payment_premium.php
+            // Redirect to payment page based on membership type
+            echo "$membershipType";
+                if ($membershipType === "regular") {
+                    header("Location: payment_regular.php");
+                    exit(); // Ensure script execution stops after redirection
+                } elseif ($membershipType === "premium") {
+                    header("Location: payment_premium.php");
+                    exit(); // Ensure script execution stops after redirection
+                }
+                elseif($membershipType === "free") {
             echo "<p>Name: " . $fname . " " . $lname;
-            echo "<p>Email: " . $email;
+            echo "<p>Email: " . $email;}
         }
         else
         {
-            echo "<h4>The following input errors were detected:</h4>";
-            echo "<p>" . $errorMsg . "</p>";
+            echo '<div style="text-align: center;">';
+            echo "<h1 style='color: red;'>Uh Oh</h1>";
+            echo '<h4>The following input errors were detected:</h4>';
+            echo '<p>' . $errorMsg . '</p>';
+            // Dynamically set the URL based on membership type
+            $paymentPage = "payment_" . strtolower($membershiptype) . ".php";
+            echo '<div class="mb-4" style="margin-top: 10px;">';
+            echo '<a href="' . $paymentPage . '">';
+            echo '<button id="returnLoginBtn" class="btn btn-primary">Return to Payment</button>';
+            echo '</a>';
+            echo '</div>';
+
         }
 
         /*
@@ -187,14 +211,6 @@
                             $stmt->error;
                         $success = false;
                     } 
-                    else
-                    {
-                        // Get the user ID of the inserted record
-                        $user_id = $stmt->insert_id;
-        
-                        // Store the user ID in the session
-                        $_SESSION['user_id'] = $user_id;
-                    }
                     $stmt->close();
                 } 
 
@@ -203,4 +219,9 @@
             }
         
         ?>
+        <script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
 </body>

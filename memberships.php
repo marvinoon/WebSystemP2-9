@@ -2,14 +2,14 @@
 <html lang="en">
 
 <head>
-    <link rel="stylesheet" href="css/membership.css">
-    <link rel="stylesheet" href="css/nav.css">
-    <link rel="stylesheet" href="css/footer.css">
-    <?php
-    include "inc/head.inc.php"
-    ?>
-</head>
-
+        <link rel="stylesheet" href="css/membership.css">
+        <link rel="stylesheet" href="css/nav.css">
+        <link rel="stylesheet" href="css/footer.css">
+        <?php
+            include "inc/head.inc.php";
+            require_once "zebra_session/session_start.php";
+        ?>
+    </head>
 <body>
     <?php
     include "inc/nav.inc.php";

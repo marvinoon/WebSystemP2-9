@@ -46,3 +46,7 @@
     color: #000000 !important; /* You can change the text color on hover if needed */
     text-decoration: none; /* Ensure the underline doesn't reappear on hover */
 }
+
+.active {
+    color: gold !important; /* You can change the text color when button is clicked */
+}
