@@ -19,40 +19,6 @@
             window.history.replaceState(null, null, window.location.href);
         }
     </script>
-
-    <ul class="list-group list-group-light">
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-            <div class="d-flex align-items-center">
-                <img src="https://mdbootstrap.com/img/new/avatars/8.jpg" alt="" style="width: 45px; height: 45px" class="rounded-circle" />
-                <div class="ms-3">
-                    <p class="fw-bold mb-1">John Doe</p>
-                    <p class="text-muted mb-0">john.doe@gmail.com</p>
-                </div>
-            </div>
-            <span class="badge rounded-pill badge-success">Active</span>
-        </li>
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-            <div class="d-flex align-items-center">
-                <img src="https://mdbootstrap.com/img/new/avatars/6.jpg" class="rounded-circle" alt="" style="width: 45px; height: 45px" />
-                <div class="ms-3">
-                    <p class="fw-bold mb-1">Alex Ray</p>
-                    <p class="text-muted mb-0">alex.ray@gmail.com</p>
-                </div>
-            </div>
-            <span class="badge rounded-pill badge-primary">Onboarding</span>
-        </li>
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-            <div class="d-flex align-items-center">
-                <img src="https://mdbootstrap.com/img/new/avatars/7.jpg" class="rounded-circle" alt="" style="width: 45px; height: 45px" />
-                <div class="ms-3">
-                    <p class="fw-bold mb-1">Kate Hunington</p>
-                    <p class="text-muted mb-0">kate.hunington@gmail.com</p>
-                </div>
-            </div>
-            <span class="badge rounded-pill badge-warning">Awaiting</span>
-        </li>
-    </ul>
-
     <header class="S1">
         <div class="heading">
             <h1 id="headline">Welcome to eBookify!</h1>
@@ -62,219 +28,22 @@
     <main>
         <section class="featured-books">
             <div class="featured-container">
-                <h2 class="text-center mb-4">Books</h2>
-                <div class="text-center">
-                    <button type="button" class="btn btn-info" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Book</button>
-
-                    <!-- Modal -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Add Book</h5>
-                                    <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <form method="post">
-                                        <div class="form-group">
-                                            <label for="field-title" class="col-form-label">Title:</label>
-                                            <input type="text" class="form-control" id="field-title" name="field-title">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="field-image" class="col-form-label">Image:</label>
-                                            <input type="text" class="form-control" id="field-image" name="field-image"></input>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="field-quantity" class="col-form-label">Quantity:</label>
-                                            <input type="text" class="form-control" id="field-quantity" name="field-quantity"></input>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="field-published" class="col-form-label">Year Published:</label>
-                                            <input type="text" class="form-control" id="field-published" name="field-published"></input>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="field-author" class="col-form-label">Author:</label>
-                                            <input type="text" class="form-control" id="field-author" name="field-author"></input>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="field-language" class="col-form-label">Language:</label>
-                                            <input type="text" class="form-control" id="field-language" name="field-language"></input>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="field-category" class="col-form-label">Category:</label>
-                                            <input type="text" class="form-control" id="field-category" name="field-category"></input>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="field-pages" class="col-form-label">Pages:</label>
-                                            <input type="text" class="form-control" id="field-pages" name="field-pages"></input>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="field-sample" class="col-form-label">Sample Text:</label>
-                                            <textarea class="form-control" id="field-sample" name="field-sample"></textarea>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                            <button type="submit" class="btn btn-primary" id="btn-save" name="btn-save">Save</button>
-                                        </div>
-                                    </form>
-                                </div>
-
+                <h2 class="text-center mb-4">Users</h2>
+                <ul class="list-group list-group-light">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <div class="d-flex align-items-center">
+                            <img src="https://mdbootstrap.com/img/new/avatars/8.jpg" alt="" style="width: 45px; height: 45px" class="rounded-circle" />
+                            <h3>ID: 1</h3>
+                            <div class="ms-3">
+                                <p class="fw-bold mb-1">John Doe</p>
+                                <p class="text-muted mb-0">john.doe@gmail.com</p>
                             </div>
                         </div>
-                    </div>
+                        <span class="badge rounded-pill badge-success">Active</span>
+                    </li>
+                </ul>
 
-                </div>
-
-                <?php
-                if (array_key_exists('btn-save', $_POST)) {
-                    saveLogic();
-                }
-                function saveLogic()
-                {
-                    $title = $errorMsg = "";
-                    $image = $errorMsg = "";
-                    $quantity = $errorMsg = "";
-                    $published = $errorMsg = "";
-                    $author = $errorMsg = "";
-                    $language = $errorMsg = "";
-                    $category = $errorMsg = "";
-                    $pages = $errorMsg = "";
-                    $sample = $errorMsg = "";
-                    $success = true;
-
-                    //Validate fields
-                    if (empty($_POST["field-title"])) {
-                        $errorMsg .= "Title is required.\\n";
-                        $success = false;
-                    } else {
-                        $title = sanitize_input($_POST["field-title"]);
-                    }
-
-                    if (empty($_POST["field-image"])) {
-                        $errorMsg .= "Image is required.\\n";
-                        $success = false;
-                    } else {
-                        $image = sanitize_input($_POST["field-image"]);
-                    }
-
-                    if (empty($_POST["field-quantity"])) {
-                        $errorMsg .= "Quantity is required.\\n";
-                        $success = false;
-                    } else {
-                        $quantity = sanitize_input($_POST["field-quantity"]);
-                    }
-
-                    if (empty($_POST["field-published"])) {
-                        $errorMsg .= "Date published is required.\\n";
-                        $success = false;
-                    } else {
-                        $published = sanitize_input($_POST["field-published"]);
-                    }
-
-                    if (empty($_POST["field-author"])) {
-                        $errorMsg .= "Author is required.\\n";
-                        $success = false;
-                    } else {
-                        $author = sanitize_input($_POST["field-author"]);
-                    }
-
-                    if (empty($_POST["field-language"])) {
-                        $errorMsg .= "Language is required.\\n";
-                        $success = false;
-                    } else {
-                        $language = sanitize_input($_POST["field-language"]);
-                    }
-
-                    if (empty($_POST["field-category"])) {
-                        $errorMsg .= "Category is required.\\n";
-                        $success = false;
-                    } else {
-                        $category = sanitize_input($_POST["field-category"]);
-                    }
-
-                    if (empty($_POST["field-pages"])) {
-                        $errorMsg .= "Page count is required.\\n";
-                        $success = false;
-                    } else {
-                        $pages = sanitize_input($_POST["field-pages"]);
-                    }
-
-                    if (empty($_POST["field-sample"])) {
-                        $errorMsg .= "Sample Text is required.\\n";
-                        $success = false;
-                    } else {
-                        $sample = sanitize_input($_POST["field-sample"]);
-                    }
-
-                    //If success 
-                    if ($success) {
-                        saveBookToDB($title, $image, $quantity, $published, $author, $language, $category, $pages, $sample);
-                    } else {
-                        echo "<script>alert('$errorMsg');</script>";
-                    }
-                }
-                function sanitize_input($data)
-                {
-                    $data = trim($data);
-                    $data = stripslashes($data);
-                    $data = htmlspecialchars($data);
-                    return $data;
-                }
-
-                function saveBookToDB($title, $image, $quantity, $published, $author, $language, $category, $pages, $sample)
-                {
-                    $errorMsg = "";
-                    $success = true;
-
-                    // Create database connection.
-                    $config = parse_ini_file('/var/www/private/db-config.ini');
-                    if (!$config) {
-                        $errorMsg = "Failed to read database config file.";
-                        $success = false;
-                    } else {
-                        $conn = new mysqli(
-                            $config['servername'],
-                            $config['username'],
-                            $config['password'],
-                            $config['dbname']
-                        );
-
-                        // Check connection
-                        if ($conn->connect_error) {
-                            $errorMsg = "Connection failed: " . $conn->connect_error;
-                            $success = false;
-                        } else {
-                            // Prepare the statement:
-                            $stmt = $conn->prepare("INSERT INTO books
-                                (quantity, year_published, book_title, author, book_language, book_category, book_pages, sample_text, book_cover) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-
-                            // Bind & execute the query statement:
-                            $stmt->bind_param("sssssssss", $quantity, $published, $title, $author, $language, $category, $pages, $sample, $image);
-                            if (!$stmt->execute()) {
-                                $errorMsg = "Execute failed: (" . $stmt->errno . ") " .
-                                    $stmt->error;
-                                $success = false;
-                            }
-                            $stmt->close();
-                        }
-                        $conn->close();
-                    }
-
-                    //inform success of fail
-                    if ($success) {
-                        echo "<script>alert('Success');</script>";
-                        echo "<script>location.reload();</script>";
-                    } else {
-                        echo "<script>alert('$errorMsg');</script>";
-                    }
-                }
-                ?>
-
-
-
-                <div class="row books-container flex-nowrap overflow-auto">
+                <ul class="list-group list-group-light">
                     <!-- print from db -->
                     <?php
                     //global $fname, $lname, $email, $pwd, $errorMsg, $success;
@@ -300,27 +69,28 @@
                             $success = false;
                         } else {
                             // Prepare the statement:
-                            $stmt = $conn->prepare("SELECT * FROM books");
+                            $stmt = $conn->prepare("SELECT * FROM user");
                             $stmt->execute();
                             $result = $stmt->get_result();
 
                             if ($result->num_rows > 0) {
                                 while ($row = $result->fetch_assoc()) {
                                     echo '
-                                <div class="col-3">
-                                    <div class="card">
-                                        <img src="images/Example Book.png" class="card-img-top" alt="Book ' . $row["book_id"] . '">
-                                        <div class="card-body">
-                                            <h5 class="card-title">' . $row["book_title"] . '</h5>
-                                            <p class="card-text">' . $row["sample_text"] . '</p>
-                                            <button type="button" class="btn btn-warning" onclick="openEditModal(' . $row["book_id"] . ', ' . $row["quantity"] . ', ' . $row["year_published"] . ', \'' . $row["book_title"] . '\',\'' . $row["author"] . '\',\'' . $row["book_language"] . '\',\'' . $row["book_category"] . '\',' . $row["book_pages"] . ', \'' . $row["sample_text"] . '\',\'' . $row["book_cover"] . '\')">Edit</button>
-                                            <form method="post">
-                                                <input type="hidden" name="del_book_id" value="' . $row['book_id'] . '">
-                                                <button type="submit" class="btn btn-danger" id="btn-delete" name="btn-delete" onclick="return confirm(\'Are you sure you want to delete this book?\')">Delete</button>
-                                            </form>
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <div class="d-flex align-items-center">
+                                        <h3>ID: ' . $row["user_id"] . '</h3>
+                                        <div class="ms-3">
+                                            <p class="fw-bold mb-1">' . $row["fname"] . ' ' . $row["lname"] . '</p>
+                                            <p class="text-muted mb-0">' . $row["email"] . '</p>
                                         </div>
                                     </div>
-                                </div>';
+                                    <span class="badge rounded-pill badge-success">' . $row["membershipType"] . '</span>
+                                    <button type="button" class="btn btn-warning" onclick="openEditModal(' . $row["user_id"] . ', \'' . $row["fname"] . '\', \'' . $row["lname"] . '\', \'' . $row["email"] . '\', \'' . $row["membershipType"] . '\')">Edit</button>
+                                    <form method="post">
+                                        <input type="hidden" name="del_user_id" value="' . $row['user_id'] . '">
+                                        <button type="submit" class="btn btn-danger" id="btn-delete" name="btn-delete" onclick="return confirm(\'Are you sure you want to delete this user?\')">Delete</button>
+                                    </form>
+                                </li>';
                                 }
                             }
                         }
@@ -340,7 +110,7 @@
 
                     function deleteFromDB()
                     {
-                        $bookId = $_POST["del_book_id"];
+                        $userId = $_POST["del_user_id"];
                         $errorMsg = "";
                         $success = true;
 
@@ -364,10 +134,10 @@
                             } else {
 
                                 // Prepare the statement:
-                                $stmt = $conn->prepare("DELETE FROM books WHERE (book_id = ?);");
+                                $stmt = $conn->prepare("DELETE FROM user WHERE (user_id = ?);");
 
                                 // Bind & execute the query statement:
-                                $stmt->bind_param("i", $bookId);
+                                $stmt->bind_param("i", $userId);
                                 if (!$stmt->execute()) {
                                     $errorMsg = "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
                                     $success = false;
@@ -388,27 +158,22 @@
 
                     ?>
                     <script>
-                        function openEditModal(bookId, quant, year, title, author, lang, cat, pages, samp, cover) {
+                        function openEditModal(userId, fname, lname, email, membershipType) {
                             // Set the book ID in the modal input field
-                            document.getElementById('bookIdInput').value = bookId;
+                            document.getElementById('userIdInput').value = userId;
 
                             // Populate the modal fields with the retrieved data
-                            document.getElementById('edit-field-title').value = title;
-                            document.getElementById('edit-field-image').value = cover;
-                            document.getElementById('edit-field-quantity').value = quant;
-                            document.getElementById('edit-field-published').value = year;
-                            document.getElementById('edit-field-author').value = author;
-                            document.getElementById('edit-field-language').value = lang;
-                            document.getElementById('edit-field-category').value = cat;
-                            document.getElementById('edit-field-pages').value = pages;
-                            document.getElementById('edit-field-sample').value = samp;
+                            document.getElementById('edit-field-fname').value = fname;
+                            document.getElementById('edit-field-lname').value = lname;
+                            document.getElementById('edit-field-email').value = email;
+                            document.getElementById('edit-field-membershipType').value = membershipType;
 
 
                             // Show the modal
                             $('#editModal').modal('show');
                         }
                     </script>
-                </div>
+                </ul>
             </div>
         </section>
 
@@ -424,42 +189,27 @@
                     </div>
                     <div class="modal-body">
                         <form method="post" id="editForm">
-                            <input type="hidden" class="form-control" id="bookIdInput" name="bookIdInput">
+                            <input type="hidden" class="form-control" id="userIdInput" name="userIdInput">
                             <div class="form-group">
-                                <label for="edit-field-title" class="col-form-label">Fill Me:</label>
-                                <input type="text" class="form-control" id="edit-field-title" name="edit-field-title">
+                                <label for="edit-field-fname" class="col-form-label">First Name:</label>
+                                <input type="text" class="form-control" id="edit-field-fname" name="edit-field-fname">
                             </div>
                             <div class="form-group">
-                                <label for="edit-field-image" class="col-form-label">Image:</label>
-                                <input type="text" class="form-control" id="edit-field-image" name="edit-field-image"></input>
+                                <label for="edit-field-lname" class="col-form-label">Last Name:</label>
+                                <input type="text" class="form-control" id="edit-field-lname" name="edit-field-lname"></input>
                             </div>
                             <div class="form-group">
-                                <label for="edit-field-quantity" class="col-form-label">Quantity:</label>
-                                <input type="text" class="form-control" id="edit-field-quantity" name="edit-field-quantity"></input>
+                                <label for="edit-field-email" class="col-form-label">Email:</label>
+                                <input type="text" class="form-control" id="edit-field-email" name="edit-field-email"></input>
                             </div>
                             <div class="form-group">
-                                <label for="edit-field-published" class="col-form-label">Year Published:</label>
-                                <input type="text" class="form-control" id="edit-field-published" name="edit-field-published"></input>
-                            </div>
-                            <div class="form-group">
-                                <label for="edit-field-author" class="col-form-label">Author:</label>
-                                <input type="text" class="form-control" id="edit-field-author" name="edit-field-author"></input>
-                            </div>
-                            <div class="form-group">
-                                <label for="edit-field-language" class="col-form-label">Language:</label>
-                                <input type="text" class="form-control" id="edit-field-language" name="edit-field-language"></input>
-                            </div>
-                            <div class="form-group">
-                                <label for="edit-field-category" class="col-form-label">Category:</label>
-                                <input type="text" class="form-control" id="edit-field-category" name="edit-field-category"></input>
-                            </div>
-                            <div class="form-group">
-                                <label for="edit-field-pages" class="col-form-label">Pages:</label>
-                                <input type="text" class="form-control" id="edit-field-pages" name="edit-field-pages"></input>
-                            </div>
-                            <div class="form-group">
-                                <label for="edit-field-sample" class="col-form-label">Sample Text:</label>
-                                <textarea class="form-control" id="edit-field-sample" name="edit-field-sample"></textarea>
+                                <label for="edit-field-membershipType" class="col-form-label">Membership Type:</label>
+                                <select class="form-control" id="edit-field-membershipType" name="edit-field-membershipType">
+                                    <option value="Free">Free</option>
+                                    <option value="Regular">Regular</option>
+                                    <option value="Premium">Premium</option>
+                                </select>
+                                <!-- <input type="text" class="form-control" id="edit-field-membershipType" name="edit-field-membershipType"></input> -->
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -477,95 +227,54 @@
         }
         function editLogic()
         {
-            $bookId = $_POST["bookIdInput"];
-            echo "<script>alert('$bookId');</script>";
+            $userId = $_POST["userIdInput"];
 
-            $title = $errorMsg = "";
-            $image = $errorMsg = "";
-            $quantity = $errorMsg = "";
-            $published = $errorMsg = "";
-            $author = $errorMsg = "";
-            $language = $errorMsg = "";
-            $category = $errorMsg = "";
-            $pages = $errorMsg = "";
-            $sample = $errorMsg = "";
+            $fname = $errorMsg = "";
+            $lname = $errorMsg = "";
+            $email = $errorMsg = "";
+            $membershipType = $errorMsg = "";
             $success = true;
 
             //Validate fields
-            if (empty($_POST["edit-field-title"])) {
+            if (empty($_POST["edit-field-fname"])) {
                 $errorMsg .= "Title is required.\\n";
                 $success = false;
             } else {
-                $title = sanitize_input($_POST["edit-field-title"]);
+                $fname = sanitize_input($_POST["edit-field-fname"]);
             }
 
-            if (empty($_POST["edit-field-image"])) {
+            if (empty($_POST["edit-field-lname"])) {
                 $errorMsg .= "Image is required.\\n";
                 $success = false;
             } else {
-                $image = sanitize_input($_POST["edit-field-image"]);
+                $lname = sanitize_input($_POST["edit-field-lname"]);
             }
 
-            if (empty($_POST["edit-field-quantity"])) {
+            if (empty($_POST["edit-field-email"])) {
                 $errorMsg .= "Quantity is required.\\n";
                 $success = false;
             } else {
-                $quantity = sanitize_input($_POST["edit-field-quantity"]);
+                $email = sanitize_input($_POST["edit-field-email"]);
             }
 
-            if (empty($_POST["edit-field-published"])) {
+            if (empty($_POST["edit-field-membershipType"])) {
                 $errorMsg .= "Date published is required.\\n";
                 $success = false;
             } else {
-                $published = sanitize_input($_POST["edit-field-published"]);
+                $membershipType = sanitize_input($_POST["edit-field-membershipType"]);
             }
 
-            if (empty($_POST["edit-field-author"])) {
-                $errorMsg .= "Author is required.\\n";
-                $success = false;
-            } else {
-                $author = sanitize_input($_POST["edit-field-author"]);
-            }
-
-            if (empty($_POST["edit-field-language"])) {
-                $errorMsg .= "Language is required.\\n";
-                $success = false;
-            } else {
-                $language = sanitize_input($_POST["edit-field-language"]);
-            }
-
-            if (empty($_POST["edit-field-category"])) {
-                $errorMsg .= "Category is required.\\n";
-                $success = false;
-            } else {
-                $category = sanitize_input($_POST["edit-field-category"]);
-            }
-
-            if (empty($_POST["edit-field-pages"])) {
-                $errorMsg .= "Page count is required.\\n";
-                $success = false;
-            } else {
-                $pages = sanitize_input($_POST["edit-field-pages"]);
-            }
-
-            if (empty($_POST["edit-field-sample"])) {
-                $errorMsg .= "Sample Text is required.\\n";
-                $success = false;
-            } else {
-                $sample = sanitize_input($_POST["edit-field-sample"]);
-            }
 
             //If success 
             if ($success) {
-                updateBookInDB($bookId, $title, $image, $quantity, $published, $author, $language, $category, $pages, $sample);
+                updateUserInDB($userId, $fname, $lname, $email, $membershipType);
             } else {
                 echo "<script>alert('$errorMsg');</script>";
             }
         }
 
-        function updateBookInDB($bookId, $title, $image, $quantity, $published, $author, $language, $category, $pages, $sample)
+        function updateUserInDB($userId, $fname, $lname, $email, $membershipType)
         {
-            //global $fname, $lname, $email, $pwd, $errorMsg, $success;
             $errorMsg = "";
             $success = true;
 
@@ -589,11 +298,10 @@
                 } else {
 
                     // Prepare the statement:
-                    $stmt = $conn->prepare("UPDATE books SET quantity = ?, year_published = ?, book_title = ?, author = ?, book_language = ?, book_category = ?, book_pages = ?, sample_text = ?, book_cover = ? WHERE (book_id = ?);");
+                    $stmt = $conn->prepare("UPDATE user SET fname = ?, lname = ?, email = ?, membershipType = ? WHERE (user_id = ?);");
 
                     // Bind & execute the query statement:
-                    $stmt->bind_param("sssssssssi", $quantity, $published, $title, $author, $language, $category, $pages, $sample, $image, $bookId);
-                    //$stmt->bind_param("si", $quantity, $bookId);
+                    $stmt->bind_param("ssssi", $fname, $lname, $email, $membershipType, $userId);
                     if (!$stmt->execute()) {
                         $errorMsg = "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
                         $success = false;
@@ -610,6 +318,14 @@
             } else {
                 echo "<script>alert('$errorMsg');</script>";
             }
+        }
+
+        function sanitize_input($data)
+        {
+            $data = trim($data);
+            $data = stripslashes($data);
+            $data = htmlspecialchars($data);
+            return $data;
         }
         ?>
 
