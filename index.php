@@ -100,7 +100,7 @@
 
                             <div class="row books-container flex-nowrap overflow-auto">
                                 <?php foreach ($books as $book): ?>
-                                    <div class="col-3">
+                                    <div class="col-10 col-md-6 col-lg-3">
                                         <div class="card">
                                             <img src="images/<?php echo $book['book_cover']; ?>" class="card-img-top" alt="<?php echo $book['book_title']; ?>">
                                             <div class="card-body">

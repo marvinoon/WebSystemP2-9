@@ -128,7 +128,8 @@ header {
     margin-left: 20px;
     border-color: white;
     overflow: hidden;
-
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
 .card-title {
     font-weight: bold;
