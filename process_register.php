@@ -14,6 +14,7 @@
     <?php
         $email = $errorMsg = $fname = $lname = $pwd_hashed = "";
         $success = true;
+        
        //first name
         $fname = sanitize_input($_POST["fname"]);
         if (!preg_match("/^[a-zA-Z ]*$/", $fname)) {
@@ -113,7 +114,6 @@
         }
         else
         {
-            echo '<div style="text-align: center;">';
             echo "<h1 style='color: red;'>Uh Oh</h1>";
             echo '<h4>The following input errors were detected:</h4>';
             echo '<p>' . $errorMsg . '</p>';
@@ -124,7 +124,6 @@
             echo '<button id="returnLoginBtn" class="btn btn-primary">Return to Payment</button>';
             echo '</a>';
             echo '</div>';
-
         }
 
         /*
@@ -219,7 +218,7 @@
             }
         
         ?>
-        <script>
+         <script>
     function goBack() {
         window.history.back();
     }
