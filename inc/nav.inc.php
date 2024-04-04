@@ -36,9 +36,12 @@
                     <?php 
                         if (isset($_SESSION['user_id'])) { 
                             echo '<li class="nav-item">
+                            <a class="nav-link btn-custom" href="books_borrowed.php">Books</a>
+                          </li>
+                          <li class="nav-item">
                                 <a class="nav-link btn-custom" href="account_page.php">' . $_SESSION['lname'] . '</a>
                             </li>
-                            </li>
+                            
                           <li class="nav-item">
                             <a class="nav-link btn-custom" href="logout.php">Logout</a>
                           </li>';

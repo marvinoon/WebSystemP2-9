@@ -1,0 +1,84 @@
+
+
+/* Profile section styling */
+section {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin: 20px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* List styles */
+li {
+    list-style: none;
+    margin-bottom: 10px;
+}
+
+/* Button styling */
+.button {
+    color: #fff; /* White text */
+    background-color: black; /* Bootstrap primary blue */
+    border-color: black; /* Border color to match */
+    padding: 10px 20px; /* Button padding */
+    text-decoration: none; /* Remove underline from links */
+    display: inline-block; /* Align button correctly */
+    border-radius: 5px !important; /* Rounded button edges */
+    margin-top: 10px;
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+.button:hover{
+    background-color: gold; 
+    border-color: gold; /* Border color on hover */
+    color: #000;
+}
+
+button.btn-danger {
+    background-color: #dc3545;
+}
+
+button.btn-primary {
+    background-color: #007bff;
+}
+
+/* Form styling */
+form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+input[type="submit"] {
+    background-color: #28a745;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    section {
+        margin: 20px 10px;
+    }
+}

@@ -24,7 +24,7 @@
         exit();
     }
     ?>
-    <script>
+    <script>//To prevent repeated form submissions
         if (window.history.replaceState) {
             window.history.replaceState(null, null, window.location.href);
         }
@@ -32,7 +32,6 @@
     <header class="S1">
         <div class="heading">
             <h1 id="headline">Welcome to eBookify!</h1>
-            <img id="header" class="img-fluid" src="images/books.jpg" />
         </div>
     </header>
     <main>
@@ -210,7 +209,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="edit-field-email" class="col-form-label">Email:</label>
-                                <input type="text" class="form-control" id="edit-field-email" name="edit-field-email"></input>
+                                <input type="email" class="form-control" id="edit-field-email" name="edit-field-email"></input>
                             </div>
                             <div class="form-group">
                                 <label for="edit-field-membershipType" class="col-form-label">Membership Type:</label>
@@ -246,29 +245,23 @@
             $success = true;
 
             //Validate fields
-            if (empty($_POST["edit-field-fname"])) {
-                $errorMsg .= "Title is required.\\n";
+            if (empty($_POST["edit-field-lname"])) {
+                $errorMsg .= "Last name is required.\\n";
                 $success = false;
             } else {
                 $fname = sanitize_input($_POST["edit-field-fname"]);
-            }
-
-            if (empty($_POST["edit-field-lname"])) {
-                $errorMsg .= "Image is required.\\n";
-                $success = false;
-            } else {
                 $lname = sanitize_input($_POST["edit-field-lname"]);
             }
 
             if (empty($_POST["edit-field-email"])) {
-                $errorMsg .= "Quantity is required.\\n";
+                $errorMsg .= "Email is required.\\n";
                 $success = false;
             } else {
                 $email = sanitize_input($_POST["edit-field-email"]);
             }
 
             if (empty($_POST["edit-field-membershipType"])) {
-                $errorMsg .= "Date published is required.\\n";
+                $errorMsg .= "Membership type is required.\\n";
                 $success = false;
             } else {
                 $membershipType = sanitize_input($_POST["edit-field-membershipType"]);

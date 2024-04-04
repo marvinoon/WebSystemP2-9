@@ -28,10 +28,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile</title>
-    <link rel="stylesheet" href="css/aboutus.css">
+    <link rel="stylesheet" href="css/accountpage.css">
     <link rel="stylesheet" href="css/nav.css">
     <link rel="stylesheet" href="css/footer.css">
 </head>
+<section>
             <h2>Profile Details</h2>
             <li><strong>First Name:</strong> <?php echo $user['fname']; ?></li>
             <li><strong>Last Name:</strong> <?php echo $user['lname']; ?></li>
@@ -55,9 +56,10 @@
         }
         ?>
         </ul>
-    </section>
       <!-- Add Edit Profile Button -->
       <button id="editProfileBtn" class="btn btn-primary">Edit Profile</button>
+      <!-- Delete Profile Button -->
+<button id="deleteProfileBtn" class="btn btn-danger">Delete Profile</button>
     </section>
     <!-- Form for Editing Profile (Initially Hidden) -->
     <section id="editProfileForm" style="display: none;">
@@ -94,6 +96,14 @@ include "inc/footer.inc.php";
     document.getElementById('editProfileBtn').addEventListener('click', function() {
         document.getElementById('editProfileForm').style.display = 'block';
     });
+    // Script to handle delete profile button click
+    document.getElementById('deleteProfileBtn').addEventListener('click', function() {
+        // Prompt the user for confirmation
+        if (confirm("Are you sure you want to delete your profile?")) {
+            // Redirect to delete script with user ID
+            window.location.href = "delete_profile.php?user_id=<?php echo $_SESSION['user_id']; ?>";
+        }
+    });
     function upgradeRegular() {
             // Redirect to upgrade regular member page
             window.location.href = "payment_regular.php";
@@ -104,7 +114,6 @@ include "inc/footer.inc.php";
             window.location.href = "payment_premium.php";
         }
 </script>
-
 </main>
 </body>
 </html>
