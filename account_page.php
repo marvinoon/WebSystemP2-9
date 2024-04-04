@@ -2,7 +2,7 @@
     // Include necessary files
     include "inc/head.inc.php";
     include "inc/nav.inc.php";
-
+    require_once "zebra_session/session_start.php";
 
 ?>
 <!DOCTYPE html>
