@@ -140,7 +140,7 @@ if (isset($_SESSION['user_id'])) {
     if ($membership_status === "Regular" || $membership_status === "Premium") {
         echo '<a href="add_to_cart.php?book_id=' . $book['book_id'] . '" class="btn-add-to-account">Add to Account</a>';
     } else {
-        echo '<a href="upgrade_membership.php" class="btn-add-to-account">Upgrade Membership to borrow the book</a>';
+        echo '<a href="memberships.php" class="btn-add-to-account">Upgrade Membership to borrow the book</a>';
     }
 } else {
     echo '<a href="loginregister.php" class="btn-add-to-account">Login to borrow the book</a>';
