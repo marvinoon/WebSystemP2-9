@@ -37,6 +37,13 @@
             <li><strong>Last Name:</strong> <?php echo $user['lname']; ?></li>
             <li><strong>Email:</strong> <?php echo $user['email']; ?></li>
             <li><strong>Membership Type:</strong> <?php echo $user['membershipType']; ?></li>
+                    <?php 
+        if ($user['membershipType'] != 'Free') {
+            // Display member status and expiry date for non-Free members
+            echo '<li><strong>Member Status:</strong> ' . $user['member_status'] . '</li>';
+            echo '<li><strong>Expiry Date:</strong> ' . $user['expiry_date'] . '</li>';
+        }
+        ?>
             <?php 
         if ($user['membershipType'] == 'Free') {
             // Display upgrade buttons for free members

@@ -6,6 +6,7 @@
     <?php 
         include "inc/head.inc.php";
         require_once "zebra_session/session_start.php";
+        include "db_connect.php"; // Change require_once to include
     ?>
 </head>
 <body>
@@ -13,12 +14,10 @@
         include "inc/nav.inc.php";
     ?>
     <?php
-
         $email = $errorMsg = "";
         $success = true;
 
-
-        //email
+        // Email
         if (empty($_POST["email"]))
         {
             $errorMsg .= "Email is required.<br>";
@@ -34,13 +33,12 @@
                 }
         }
 
-        //password
+        // Password
         if (empty($_POST["pwd"]))
         {
             $errorMsg .= "Password is required.<br>";
             $success = false;
         }
-
 
         if (!empty($_POST["email"]) && !empty($_POST["pwd"])) {
             checkAdmin();
@@ -59,6 +57,7 @@
             echo "<p>" . $errorMsg . "</p>";
             echo '<div class="mb-4" style="margin-top: 10px;"> <a href="loginregister.php"> <button id="returnLoginBtn" class="btn btn-primary">Return to Login</button> </a> </div>';
         }
+
         /*
         * Helper function that checks input for malicious or unwanted content.
         */
@@ -69,125 +68,84 @@
             $data = htmlspecialchars($data);
             return $data;
         }
+
         function checkAdmin()
         {
-            global $admin_id, $fname, $lname, $email, $pwd_hashed, $errorMsg, $success;
+            global $admin_id, $fname, $lname, $email, $pwd_hashed, $errorMsg, $success, $link;
 
-            // Create database connection.
-            $config = parse_ini_file('/var/www/private/db-config.ini');
-            if (!$config)
+            // Prepare the statement to check if the user is an admin:
+            $stmt = $link->prepare("SELECT * FROM admin WHERE email=?");
+
+            // Bind & execute the query statement:
+            $stmt->bind_param("s", $email);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            if ($result->num_rows > 0)
             {
-                $errorMsg = "Failed to read database config file.";
-                $success = false;
+                // User is an admin, log in as admin.
+                $_SESSION['admin'] = true;
+
+                $row = $result->fetch_assoc();
+                $fname = $row["fname"];
+                $lname = $row["lname"];
+                $pwd_hashed = $row["password"];
+                $admin_id = $row["admin_id"];
+
+                $_SESSION['admin_id'] = $admin_id;
+                $_SESSION['lname'] = $lname; 
+                header("Location: admin.php");
+                exit();
             }
             else
             {
-                $conn = new mysqli(
-                    $config['servername'],
-                    $config['username'],
-                    $config['password'],
-                    $config['dbname']
-                );
-
-                // Check connection
-                if ($conn->connect_error)
-                {
-                    $errorMsg = "Connection failed: " . $conn->connect_error;
-                    $success = false;
-                }
-                else
-                {
-                    // Prepare the statement to check if the user is an admin:
-                    $stmt = $conn->prepare("SELECT * FROM admin WHERE email=?");
-
-                    // Bind & execute the query statement:
-                    $stmt->bind_param("s", $email);
-                    $stmt->execute();
-                    $result = $stmt->get_result();
-                    if ($result->num_rows > 0)
-                    {
-                        // User is an admin, log in as admin.
-                        $_SESSION['admin'] = true;
-
-                        $row = $result->fetch_assoc();
-                        $fname = $row["fname"];
-                        $lname = $row["lname"];
-                        $pwd_hashed = $row["password"];
-                        $admin_id = $row["admin_id"];
-
-                        $_SESSION['admin_id'] = $admin_id;
-                        $_SESSION['lname'] = $lname; 
-                        header("Location: admin.php");
-                        exit();
-                    }
-                    else
-                    {
-                        // User is not an admin, continue with normal login.
-                        authenticateUser();
-                    }
-                    $stmt->close();
-                }
-
-                $conn->close();
+                // User is not an admin, continue with normal login.
+                authenticateUser();
             }
+            $stmt->close();
         }
+
         /*
         * Helper function to authenticate the login.
         */
         function authenticateUser()
         {
-            global $fname, $lname, $email, $pwd_hashed, $errorMsg, $success;
-        
-            // Create database connection.
-            $config = parse_ini_file('/var/www/private/db-config.ini');
-            if (!$config)
-            {
-                $errorMsg = "Failed to read database config file.";
-                $success = false;
-            }
-            else
-            {
-                $conn = new mysqli(
-                    $config['servername'],
-                    $config['username'],
-                    $config['password'],
-                    $config['dbname']
-            );
-        
-            // Check connection
-            if ($conn->connect_error)
-            {
-                $errorMsg = "Connection failed: " . $conn->connect_error;
-                $success = false;
-            }
-            else
-            {
-                // Prepare the statement:
-                $stmt = $conn->prepare("SELECT * FROM user WHERE email=?");
-                
-                // Bind & execute the query statement:
-                $stmt->bind_param("s", $email);
-                $stmt->execute();
-                $result = $stmt->get_result();
-                if ($result->num_rows > 0)
-                {
-                    // Note that email field is unique, so should only have
-                    // one row in the result set.
-                    $row = $result->fetch_assoc();
-                    $fname = $row["fname"];
-                    $lname = $row["lname"];
-                    $pwd_hashed = $row["password"];
+            global $fname, $lname, $email, $pwd_hashed, $errorMsg, $success, $link;
 
-                    $user_id = $row["user_id"];
-                    $_SESSION['user_id'] = $user_id;
-               
-                    // Check if the password matches:
-                    if (!password_verify($_POST["pwd"], $pwd_hashed))
-                    {
-                        // Don't be too specific with the error message - hackers don't
-                        // need to know which one they got right or wrong. :)
-                        $errorMsg = "Email not found or password doesn't match...";
+            // Prepare the statement:
+            $stmt = $link->prepare("SELECT * FROM user WHERE email=?");
+            
+            // Bind & execute the query statement:
+            $stmt->bind_param("s", $email);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            if ($result->num_rows > 0)
+            {
+                // Note that email field is unique, so should only have
+                // one row in the result set.
+                $row = $result->fetch_assoc();
+                $fname = $row["fname"];
+                $lname = $row["lname"];
+                $pwd_hashed = $row["password"];
+
+                $user_id = $row["user_id"];
+                $_SESSION['user_id'] = $user_id;
+            
+                // Check if the password matches:
+                if (password_verify($_POST["pwd"], $pwd_hashed))
+                {
+                    // Password is correct, now update the member status before setting session variables
+                    $member_status = updateMemberStatus($user_id, $link);
+                    if ($member_status === false) {
+                        // Handle error, could not update status
+                        $errorMsg = "Could not update membership status.";
                         $success = false;
+                    } else {
+                        // Set session variables
+                        $_SESSION['member_status'] = $member_status;
+                        
+                        // Redirect to user dashboard page
+                        header("Location: index.php");
+                        exit();
                     }
                 }
                 else
@@ -195,12 +153,45 @@
                     $errorMsg = "Email not found or password doesn't match...";
                     $success = false;
                 }
-                $stmt->close();
             }
-        
-            $conn->close();
+            else
+            {
+                $errorMsg = "Email not found or password doesn't match...";
+                $success = false;
+            }
+            
+            $stmt->close();
         }
-    }
 
-        ?>
+        function updateMemberStatus($user_id, $conn) {
+            // Prepare the SQL statement to update member_status based on expiry_date
+            $sql = "UPDATE user SET member_status = CASE 
+                        WHEN membershipType != 'Free' AND expiry_date < CURRENT_DATE THEN 'Expired' 
+                        ELSE 'Active' 
+                    END 
+                    WHERE user_id = ?";
+            
+            $stmt = $conn->prepare($sql);
+            $stmt->bind_param("i", $user_id);
+            
+            // Execute the query and check for success
+            if ($stmt->execute()) {
+                // Success, now check the updated status
+                $stmt->close();
+                $stmt = $conn->prepare("SELECT member_status FROM user WHERE user_id = ?");
+                $stmt->bind_param("i", $user_id);
+                $stmt->execute();
+                $stmt->bind_result($member_status);
+                $stmt->fetch();
+                $stmt->close();
+                return $member_status;
+            } else {
+                // Handle error
+                $errorMsg = "Error updating member status: " . $stmt->error;
+                $stmt->close();
+                return false;
+            }
+        }
+    ?>
 </body>
+</html>
