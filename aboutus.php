@@ -20,27 +20,101 @@
     </header>
 
     <main>
-        <section class="description">
-            <h2>Discover an Endless Library of Literary Treasures</h2>
-            <p>At our eBook subscription service, we offer you unlimited access to a diverse collection of titles - from timeless classics to the latest bestsellers.</p>
-        </section>
+        <section id="team" class="team">
 
-        <section class="features">
-            <h2>What We Offer</h2>
-            <ul>
-                <li>
-                    <strong>Unlimited Access:</strong>
-                    <p>Enjoy as many books as you like, whenever you want.</p>
-                </li>
-                <li>
-                    <strong>Curated Collections:</strong>
-                    <p>Explore expertly curated collections to discover your next great read.</p>
-                </li>
-                <li>
-                    <strong>New Titles Weekly:</strong>
-                    <p>Our library is constantly updated, so you'll never run out of new adventures.</p>
-                </li>
-            </ul>
+            <!--  Section Title -->
+            <div class="container section-title" data-aos="fade-up">
+                <h2>Our Team</h2>
+            </div><!-- End Section Title -->
+
+            <div class="container">
+
+                <div class="row gy-5">
+
+                <div class="col-lg-4 col-md-6 member" data-aos="fade-up" data-aos-delay="100">
+                    <div class="member-img">
+                    <img src="images/usericon.jpeg" class="img-fluid" alt="">
+                    <div class="social">
+                        <a href="#"><i class="bi bi-twitter"></i></a>
+                        <a href="#"><i class="bi bi-facebook"></i></a>
+                        <a href="#"><i class="bi bi-instagram"></i></a>
+                        <a href="#"><i class="bi bi-linkedin"></i></a>
+                    </div>
+                    </div>
+                    <div class="member-info text-center">
+                    <h4>Jonathan Goh Zhe Hong</h4>
+                    <span>Backend Developer</span>
+                    </div>
+                </div><!-- End Team Member -->
+
+                <div class="col-lg-4 col-md-6 member" data-aos="fade-up" data-aos-delay="200">
+                    <div class="member-img">
+                    <img src="images/usericon.jpeg" class="img-fluid" alt="">
+                    <div class="social">
+                        <a href="#"><i class="bi bi-twitter"></i></a>
+                        <a href="#"><i class="bi bi-facebook"></i></a>
+                        <a href="#"><i class="bi bi-instagram"></i></a>
+                        <a href="#"><i class="bi bi-linkedin"></i></a>
+                    </div>
+                    </div>
+                    <div class="member-info text-center">
+                    <h4>Oon Jun Jie Marvin</h4>
+                    <span>Backend Developer</span>
+                    </div>
+                </div><!-- End Team Member -->
+
+                <div class="col-lg-4 col-md-6 member" data-aos="fade-up" data-aos-delay="300">
+                    <div class="member-img">
+                    <img src="images/usericon.jpeg" class="img-fluid" alt="">
+                    <div class="social">
+                        <a href="#"><i class="bi bi-twitter"></i></a>
+                        <a href="#"><i class="bi bi-facebook"></i></a>
+                        <a href="#"><i class="bi bi-instagram"></i></a>
+                        <a href="#"><i class="bi bi-linkedin"></i></a>
+                    </div>
+                    </div>
+                    <div class="member-info text-center">
+                    <h4>Yeo Xin Ling Jocelyn</h4>
+                    <span>Backend Developer</span>
+                    </div>
+                </div><!-- End Team Member -->
+
+                <div class="col-lg-4 col-md-6 member" data-aos="fade-up" data-aos-delay="400">
+                    <div class="member-img">
+                    <img src="images/usericon.jpeg" class="img-fluid" alt="">
+                    <div class="social">
+                        <a href="#"><i class="bi bi-twitter"></i></a>
+                        <a href="#"><i class="bi bi-facebook"></i></a>
+                        <a href="#"><i class="bi bi-instagram"></i></a>
+                        <a href="#"><i class="bi bi-linkedin"></i></a>
+                    </div>
+                    </div>
+                    <div class="member-info text-center">
+                    <h4>Noor Rifat</h4>
+                    <span>Frontend Developer</span>
+                    </div>
+                </div><!-- End Team Member -->
+
+                <div class="col-lg-4 col-md-6 member" data-aos="fade-up" data-aos-delay="500">
+                    <div class="member-img">
+                    <img src="images/usericon.jpeg" class="img-fluid" alt="">
+                    <div class="social">
+                        <a href="#"><i class="bi bi-twitter"></i></a>
+                        <a href="#"><i class="bi bi-facebook"></i></a>
+                        <a href="#"><i class="bi bi-instagram"></i></a>
+                        <a href="#"><i class="bi bi-linkedin"></i></a>
+                    </div>
+                    </div>
+                    <div class="member-info text-center">
+                    <h4>Koh Tong Wei</h4>
+                    <span>Frontend Developer</span>
+                    </div>
+                </div><!-- End Team Member -->
+
+                </div>
+
+            </div>
+
         </section>
         <section class="location">
             <h2>Our Location</h2>
