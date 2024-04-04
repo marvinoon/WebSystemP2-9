@@ -13,7 +13,6 @@
     // Include necessary files
     include "inc/head.inc.php";
     include "inc/nav.inc.php";
-
     // Fetch user details from the database based on the user ID stored in the session
     $user_id = $_SESSION['user_id'];
     // Replace the following SQL query with your actual query to fetch user details

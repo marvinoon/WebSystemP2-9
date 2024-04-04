@@ -16,6 +16,21 @@
     include "inc/nav.inc.php";
     ?>
 
+    <!-- Only admin can view this page -->
+    <?php
+    if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
+        // Redirect to the homepage or another page
+        header('Location: index.php');
+        exit();
+    }
+    ?>
+
+    <script>
+        if (window.history.replaceState) {
+            window.history.replaceState(null, null, window.location.href);
+        }
+    </script>
+
     <header class="S1">
         <div class="heading">
             <h1 id="headline">Welcome to eBookify!</h1>
@@ -34,7 +49,7 @@
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Testing</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel">Add Book</h5>
                                     <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -45,10 +60,6 @@
                                             <label for="field-title" class="col-form-label">Title:</label>
                                             <input type="text" class="form-control" id="field-title" name="field-title">
                                         </div>
-                                        <!-- <div class="form-group">
-                                            <label for="field-description"" class="col-form-label">Description:</label>
-                                            <textarea class="form-control" id="field-description" name="field-description"></textarea>
-                                        </div> -->
                                         <div class="form-group">
                                             <label for="field-image" class="col-form-label">Image:</label>
                                             <input type="text" class="form-control" id="field-image" name="field-image"></input>
@@ -83,7 +94,7 @@
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                            <button type="submit" class="btn btn-primary" id="btn-save" name="btn-save">Save changes</button>
+                                            <button type="submit" class="btn btn-primary" id="btn-save" name="btn-save">Save</button>
                                         </div>
                                     </form>
                                 </div>
@@ -177,7 +188,6 @@
 
                     //If success 
                     if ($success) {
-
                         saveBookToDB($title, $image, $quantity, $published, $author, $language, $category, $pages, $sample);
                     } else {
                         echo "<script>alert('$errorMsg');</script>";
@@ -193,7 +203,6 @@
 
                 function saveBookToDB($title, $image, $quantity, $published, $author, $language, $category, $pages, $sample)
                 {
-                    //global $fname, $lname, $email, $pwd, $errorMsg, $success;
                     $errorMsg = "";
                     $success = true;
 
@@ -217,7 +226,7 @@
                         } else {
                             // Prepare the statement:
                             $stmt = $conn->prepare("INSERT INTO books
-                                (quantity, year_published, book_title, author, book_language, book_category, book_pages, sample_text, book_cover) VALUES (?, ?, ?, ?, ?, ?, ?)");
+                                (quantity, year_published, book_title, author, book_language, book_category, book_pages, sample_text, book_cover) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
                             // Bind & execute the query statement:
                             $stmt->bind_param("sssssssss", $quantity, $published, $title, $author, $language, $category, $pages, $sample, $image);
@@ -234,6 +243,7 @@
                     //inform success of fail
                     if ($success) {
                         echo "<script>alert('Success');</script>";
+                        echo "<script>location.reload();</script>";
                     } else {
                         echo "<script>alert('$errorMsg');</script>";
                     }
@@ -280,9 +290,12 @@
                                         <img src="images/Example Book.png" class="card-img-top" alt="Book ' . $row["book_id"] . '">
                                         <div class="card-body">
                                             <h5 class="card-title">' . $row["book_title"] . '</h5>
-                                            <p class="card-text">Book ' . $row["sample_text"] . '</p>
-                                            <button type="button" class="btn btn-warning" onclick="openModal(' . $row["book_id"] . ' , ' . $row["quantity"] . ' , ' . $row["year_published"] . ' , ' . $row["book_title"] . ' , ' . $row["author"] . ' , ' . $row["book_language"] . ' , ' . $row["book_category"] . ' , ' . $row["book_pages"] . ' , ' . $row["sample_text"] . ' , ' . $row["book_cover"] . ')">Edit</button>
-                                            <button type="button" class="btn btn-danger" onclick="openModal(' . $row["book_id"] . ')">Delete</button>
+                                            <p class="card-text">' . $row["sample_text"] . '</p>
+                                            <button type="button" class="btn btn-warning" onclick="openEditModal(' . $row["book_id"] . ', ' . $row["quantity"] . ', ' . $row["year_published"] . ', \'' . $row["book_title"] . '\',\'' . $row["author"] . '\',\'' . $row["book_language"] . '\',\'' . $row["book_category"] . '\',' . $row["book_pages"] . ', \'' . $row["sample_text"] . '\',\'' . $row["book_cover"] . '\')">Edit</button>
+                                            <form method="post">
+                                                <input type="hidden" name="del_book_id" value="' . $row['book_id'] . '">
+                                                <button type="submit" class="btn btn-danger" id="btn-delete" name="btn-delete" onclick="return confirm(\'Are you sure you want to delete this book?\')">Delete</button>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>';
@@ -298,16 +311,62 @@
                     } else {
                         echo "<script>alert('$errorMsg');</script>";
                     }
-                    ?>
-                    <!-- <script>
-                    alert("Test");
-                    function openModal(bookId) {
-                        alert(bookId);
-                        $('#editModal').modal('show');
+
+                    if (array_key_exists('btn-delete', $_POST)) {
+                        deleteFromDB();
                     }
-                    </script> -->
+
+                    function deleteFromDB()
+                    {
+                        $bookId = $_POST["del_book_id"];
+                        $errorMsg = "";
+                        $success = true;
+
+                        // Create database connection.
+                        $config = parse_ini_file('/var/www/private/db-config.ini');
+                        if (!$config) {
+                            $errorMsg = "Failed to read database config file.";
+                            $success = false;
+                        } else {
+                            $conn = new mysqli(
+                                $config['servername'],
+                                $config['username'],
+                                $config['password'],
+                                $config['dbname']
+                            );
+
+                            // Check connection
+                            if ($conn->connect_error) {
+                                $errorMsg = "Connection failed: " . $conn->connect_error;
+                                $success = false;
+                            } else {
+
+                                // Prepare the statement:
+                                $stmt = $conn->prepare("DELETE FROM books WHERE (book_id = ?);");
+
+                                // Bind & execute the query statement:
+                                $stmt->bind_param("i", $bookId);
+                                if (!$stmt->execute()) {
+                                    $errorMsg = "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+                                    $success = false;
+                                }
+                                $stmt->close();
+                            }
+                            $conn->close();
+                        }
+
+                        //inform success of fail
+                        if ($success) {
+                            echo "<script>alert('Delete Success');</script>";
+                            echo "<script>location.reload();</script>";
+                        } else {
+                            echo "<script>alert('$errorMsg');</script>";
+                        }
+                    }
+
+                    ?>
                     <script>
-                        function openModal(bookId, quant, year, title, author, lang, cat, pages, samp, cover) {
+                        function openEditModal(bookId, quant, year, title, author, lang, cat, pages, samp, cover) {
                             // Set the book ID in the modal input field
                             document.getElementById('bookIdInput').value = bookId;
 
@@ -318,33 +377,13 @@
                             document.getElementById('edit-field-published').value = year;
                             document.getElementById('edit-field-author').value = author;
                             document.getElementById('edit-field-language').value = lang;
-                            document.getElementById('edit-field-catergory').value = cat;
+                            document.getElementById('edit-field-category').value = cat;
                             document.getElementById('edit-field-pages').value = pages;
                             document.getElementById('edit-field-sample').value = samp;
 
 
                             // Show the modal
                             $('#editModal').modal('show');
-                        }
-
-                        function saveChanges(event) {
-                            event.preventDefault();
-
-                            // Retrieve the form data
-                            var bookId = document.getElementById('bookIdInput').value;
-                            var bookTitle = document.getElementById('titleInput').value;
-                            var bookDescription = document.getElementById('descriptionInput').value;
-
-                            // Perform the necessary actions to save the changes to the server
-                            // Modify this code to fit your requirements and save the changes accordingly
-
-                            // Example code:
-                            console.log('Book ID:', bookId);
-                            console.log('New Title:', bookTitle);
-                            console.log('New Description:', bookDescription);
-
-                            // Hide the modal
-                            $('#editModal').modal('hide');
                         }
                     </script>
                 </div>
@@ -362,8 +401,8 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form id="editForm" onsubmit="saveChanges(event)">
-                            <input type="hidden" id="bookIdInput" name="book_id">
+                        <form method="post" id="editForm">
+                            <input type="hidden" class="form-control" id="bookIdInput" name="bookIdInput">
                             <div class="form-group">
                                 <label for="edit-field-title" class="col-form-label">Fill Me:</label>
                                 <input type="text" class="form-control" id="edit-field-title" name="edit-field-title">
@@ -402,13 +441,155 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary">Save Changes</button>
+                                <button type="submit" class="btn btn-primary" id="btn-save-changes" name="btn-save-changes">Save Changes</button>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
+
+        <?php
+        if (array_key_exists('btn-save-changes', $_POST)) {
+            editLogic();
+        }
+        function editLogic()
+        {
+            $bookId = $_POST["bookIdInput"];
+            echo "<script>alert('$bookId');</script>";
+
+            $title = $errorMsg = "";
+            $image = $errorMsg = "";
+            $quantity = $errorMsg = "";
+            $published = $errorMsg = "";
+            $author = $errorMsg = "";
+            $language = $errorMsg = "";
+            $category = $errorMsg = "";
+            $pages = $errorMsg = "";
+            $sample = $errorMsg = "";
+            $success = true;
+
+            //Validate fields
+            if (empty($_POST["edit-field-title"])) {
+                $errorMsg .= "Title is required.\\n";
+                $success = false;
+            } else {
+                $title = sanitize_input($_POST["edit-field-title"]);
+            }
+
+            if (empty($_POST["edit-field-image"])) {
+                $errorMsg .= "Image is required.\\n";
+                $success = false;
+            } else {
+                $image = sanitize_input($_POST["edit-field-image"]);
+            }
+
+            if (empty($_POST["edit-field-quantity"])) {
+                $errorMsg .= "Quantity is required.\\n";
+                $success = false;
+            } else {
+                $quantity = sanitize_input($_POST["edit-field-quantity"]);
+            }
+
+            if (empty($_POST["edit-field-published"])) {
+                $errorMsg .= "Date published is required.\\n";
+                $success = false;
+            } else {
+                $published = sanitize_input($_POST["edit-field-published"]);
+            }
+
+            if (empty($_POST["edit-field-author"])) {
+                $errorMsg .= "Author is required.\\n";
+                $success = false;
+            } else {
+                $author = sanitize_input($_POST["edit-field-author"]);
+            }
+
+            if (empty($_POST["edit-field-language"])) {
+                $errorMsg .= "Language is required.\\n";
+                $success = false;
+            } else {
+                $language = sanitize_input($_POST["edit-field-language"]);
+            }
+
+            if (empty($_POST["edit-field-category"])) {
+                $errorMsg .= "Category is required.\\n";
+                $success = false;
+            } else {
+                $category = sanitize_input($_POST["edit-field-category"]);
+            }
+
+            if (empty($_POST["edit-field-pages"])) {
+                $errorMsg .= "Page count is required.\\n";
+                $success = false;
+            } else {
+                $pages = sanitize_input($_POST["edit-field-pages"]);
+            }
+
+            if (empty($_POST["edit-field-sample"])) {
+                $errorMsg .= "Sample Text is required.\\n";
+                $success = false;
+            } else {
+                $sample = sanitize_input($_POST["edit-field-sample"]);
+            }
+
+            //If success 
+            if ($success) {
+                updateBookInDB($bookId, $title, $image, $quantity, $published, $author, $language, $category, $pages, $sample);
+            } else {
+                echo "<script>alert('$errorMsg');</script>";
+            }
+        }
+
+        function updateBookInDB($bookId, $title, $image, $quantity, $published, $author, $language, $category, $pages, $sample)
+        {
+            //global $fname, $lname, $email, $pwd, $errorMsg, $success;
+            $errorMsg = "";
+            $success = true;
+
+            // Create database connection.
+            $config = parse_ini_file('/var/www/private/db-config.ini');
+            if (!$config) {
+                $errorMsg = "Failed to read database config file.";
+                $success = false;
+            } else {
+                $conn = new mysqli(
+                    $config['servername'],
+                    $config['username'],
+                    $config['password'],
+                    $config['dbname']
+                );
+
+                // Check connection
+                if ($conn->connect_error) {
+                    $errorMsg = "Connection failed: " . $conn->connect_error;
+                    $success = false;
+                } else {
+
+                    // Prepare the statement:
+                    $stmt = $conn->prepare("UPDATE books SET quantity = ?, year_published = ?, book_title = ?, author = ?, book_language = ?, book_category = ?, book_pages = ?, sample_text = ?, book_cover = ? WHERE (book_id = ?);");
+
+                    // Bind & execute the query statement:
+                    $stmt->bind_param("sssssssssi", $quantity, $published, $title, $author, $language, $category, $pages, $sample, $image, $bookId);
+                    //$stmt->bind_param("si", $quantity, $bookId);
+                    if (!$stmt->execute()) {
+                        $errorMsg = "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+                        $success = false;
+                    }
+                    $stmt->close();
+                }
+                $conn->close();
+            }
+
+            //inform success of fail
+            if ($success) {
+                echo "<script>alert('Update Success');</script>";
+                echo "<script>location.reload();</script>";
+            } else {
+                echo "<script>alert('$errorMsg');</script>";
+            }
+        }
+        ?>
 
 
     </main>
