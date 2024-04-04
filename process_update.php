@@ -19,7 +19,7 @@
         // Initialize error message variable
         $errorMsg = "";
         // Retrieve the user ID from the session
-    $user_id = $_SESSION['user_id'];
+        $user_id = $_SESSION['user_id'];
        //first name
         $fname = sanitize_input($_POST["fname"]);
         if (!preg_match("/^[a-zA-Z ]*$/", $fname)) {
@@ -93,11 +93,8 @@ if (!empty($_POST["pwd"])) {
         if ($success)
         {
             updateMemberToDB($user_id, $link);
-            echo "<h4>Registration successful!</h4>";
-            //add if statement if membership == Regular or ==Premium bring to payment_regular.php or payment_premium.php
-            // Redirect to payment page based on membership type
-            {
-            echo "<p>Name: " . $fname . " " . $lname;
+            echo "<h4>Update Profile Details Successful!</h4>";
+            {echo "<p>Name: " . $fname . " " . $lname;
             echo "<p>Email: " . $email;}
         }
         else

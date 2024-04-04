@@ -23,30 +23,30 @@
                 <h3>$99.00/Year<h3>
                                     <div class="form-group">
                         <label for="nameOnCard">Name on Card:</label>
-                        <input type="text" id="nameOnCard" name="name_on_card" required>
+                        <input maxlength="45" type="text" id="nameOnCard" name="name_on_card" required>
                     </div>
                     <div class="form-group">
                         <label for="email">Email:</label>
-                        <input type="text" id="email" name="email" required>
+                        <input maxlength="45" type="email" id="email" name="email" required>
                     </div>
                     <div class="form-group">
                         <label for="cardNumber">Card Number:</label>
-                        <input type="text" id="cardNumber" name="card_number" required>
+                        <input maxlength="16" type="number" id="cardNumber" name="card_number" required>
                     </div>
 
                     <div class="form-group">
                         <label for="expMonth">Expiration Month:</label>
-                        <input type="text" id="expMonth" name="exp_month" required>
+                        <input maxlength="2" type="number" id="expMonth" name="exp_month" required>
                     </div>
 
                     <div class="form-group">
                         <label for="expYear">Expiration Year:</label>
-                        <input type="text" id="expYear" name="exp_year" required>
+                        <input maxlength="4" type="number" id="expYear" name="exp_year" required>
                     </div>
 
                     <div class="form-group">
                         <label for="cvv">CVV:</label>
-                        <input type="text" id="cvv" name="cvv" required>
+                        <input maxlength="3" type="number" id="cvv" name="cvv" required>
                     </div>
 
                     <div class="form-group">
