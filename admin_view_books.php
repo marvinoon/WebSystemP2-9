@@ -25,7 +25,7 @@
     }
     ?>
 
-    <script>
+    <script>//To prevent repeated form submissions
         if (window.history.replaceState) {
             window.history.replaceState(null, null, window.location.href);
         }
@@ -34,7 +34,6 @@
     <header class="S1">
         <div class="heading">
             <h1 id="headline">Welcome to eBookify!</h1>
-            <img id="header" class="img-fluid" src="images/books.jpg" />
         </div>
     </header>
     <main>
@@ -58,39 +57,39 @@
                                     <form method="post">
                                         <div class="form-group">
                                             <label for="field-title" class="col-form-label">Title:</label>
-                                            <input type="text" class="form-control" id="field-title" name="field-title">
+                                            <input type="text" required class="form-control" id="field-title" name="field-title">
                                         </div>
                                         <div class="form-group">
                                             <label for="field-image" class="col-form-label">Image:</label>
-                                            <input type="text" class="form-control" id="field-image" name="field-image"></input>
+                                            <input type="text" required class="form-control" id="field-image" name="field-image"></input>
                                         </div>
                                         <div class="form-group">
                                             <label for="field-quantity" class="col-form-label">Quantity:</label>
-                                            <input type="text" class="form-control" id="field-quantity" name="field-quantity"></input>
+                                            <input type="number" required class="form-control" id="field-quantity" name="field-quantity"></input>
                                         </div>
                                         <div class="form-group">
                                             <label for="field-published" class="col-form-label">Year Published:</label>
-                                            <input type="text" class="form-control" id="field-published" name="field-published"></input>
+                                            <input type="text" required class="form-control" id="field-published" name="field-published"></input>
                                         </div>
                                         <div class="form-group">
                                             <label for="field-author" class="col-form-label">Author:</label>
-                                            <input type="text" class="form-control" id="field-author" name="field-author"></input>
+                                            <input type="text" required class="form-control" id="field-author" name="field-author"></input>
                                         </div>
                                         <div class="form-group">
                                             <label for="field-language" class="col-form-label">Language:</label>
-                                            <input type="text" class="form-control" id="field-language" name="field-language"></input>
+                                            <input type="text" required class="form-control" id="field-language" name="field-language"></input>
                                         </div>
                                         <div class="form-group">
                                             <label for="field-category" class="col-form-label">Category:</label>
-                                            <input type="text" class="form-control" id="field-category" name="field-category"></input>
+                                            <input type="text" required class="form-control" id="field-category" name="field-category"></input>
                                         </div>
                                         <div class="form-group">
                                             <label for="field-pages" class="col-form-label">Pages:</label>
-                                            <input type="text" class="form-control" id="field-pages" name="field-pages"></input>
+                                            <input type="number" required class="form-control" id="field-pages" name="field-pages"></input>
                                         </div>
                                         <div class="form-group">
                                             <label for="field-sample" class="col-form-label">Sample Text:</label>
-                                            <textarea class="form-control" id="field-sample" name="field-sample"></textarea>
+                                            <textarea required class="form-control" id="field-sample" name="field-sample"></textarea>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -255,7 +254,6 @@
                 <div class="row books-container flex-nowrap overflow-auto">
                     <!-- print from db -->
                     <?php
-                    //global $fname, $lname, $email, $pwd, $errorMsg, $success;
                     $errorMsg = "";
                     $success = true;
 
@@ -404,40 +402,40 @@
                         <form method="post" id="editForm">
                             <input type="hidden" class="form-control" id="bookIdInput" name="bookIdInput">
                             <div class="form-group">
-                                <label for="edit-field-title" class="col-form-label">Fill Me:</label>
-                                <input type="text" class="form-control" id="edit-field-title" name="edit-field-title">
+                                <label for="edit-field-title" class="col-form-label">Title:</label>
+                                <input type="text" required class="form-control" id="edit-field-title" name="edit-field-title">
                             </div>
                             <div class="form-group">
                                 <label for="edit-field-image" class="col-form-label">Image:</label>
-                                <input type="text" class="form-control" id="edit-field-image" name="edit-field-image"></input>
+                                <input type="text" required class="form-control" id="edit-field-image" name="edit-field-image"></input>
                             </div>
                             <div class="form-group">
                                 <label for="edit-field-quantity" class="col-form-label">Quantity:</label>
-                                <input type="text" class="form-control" id="edit-field-quantity" name="edit-field-quantity"></input>
+                                <input type="number" required class="form-control" id="edit-field-quantity" name="edit-field-quantity"></input>
                             </div>
                             <div class="form-group">
                                 <label for="edit-field-published" class="col-form-label">Year Published:</label>
-                                <input type="text" class="form-control" id="edit-field-published" name="edit-field-published"></input>
+                                <input type="text" required class="form-control" id="edit-field-published" name="edit-field-published"></input>
                             </div>
                             <div class="form-group">
                                 <label for="edit-field-author" class="col-form-label">Author:</label>
-                                <input type="text" class="form-control" id="edit-field-author" name="edit-field-author"></input>
+                                <input type="text" required class="form-control" id="edit-field-author" name="edit-field-author"></input>
                             </div>
                             <div class="form-group">
                                 <label for="edit-field-language" class="col-form-label">Language:</label>
-                                <input type="text" class="form-control" id="edit-field-language" name="edit-field-language"></input>
+                                <input type="text" required class="form-control" id="edit-field-language" name="edit-field-language"></input>
                             </div>
                             <div class="form-group">
                                 <label for="edit-field-category" class="col-form-label">Category:</label>
-                                <input type="text" class="form-control" id="edit-field-category" name="edit-field-category"></input>
+                                <input type="text" required class="form-control" id="edit-field-category" name="edit-field-category"></input>
                             </div>
                             <div class="form-group">
                                 <label for="edit-field-pages" class="col-form-label">Pages:</label>
-                                <input type="text" class="form-control" id="edit-field-pages" name="edit-field-pages"></input>
+                                <input type="number" required class="form-control" id="edit-field-pages" name="edit-field-pages"></input>
                             </div>
                             <div class="form-group">
                                 <label for="edit-field-sample" class="col-form-label">Sample Text:</label>
-                                <textarea class="form-control" id="edit-field-sample" name="edit-field-sample"></textarea>
+                                <textarea required class="form-control" id="edit-field-sample" name="edit-field-sample"></textarea>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

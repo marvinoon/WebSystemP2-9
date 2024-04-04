@@ -2,8 +2,8 @@
 <html lang="en">
 
 <head>
-        <link rel="stylesheet" href="css/nav.css">
-        <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="css/footer.css">
     <?php
     include "inc/head.inc.php";
     require_once "zebra_session/session_start.php";
@@ -14,16 +14,24 @@
     <?php
     include "inc/nav.inc.php";
     ?>
+    <!-- Only admin can view this page -->
+    <?php
+    if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
+        // Redirect to the homepage or another page
+        header('Location: index.php');
+        exit();
+    }
+    ?>
     <div>
     </div>
 
     <!-- Only admin can view this page -->
     <?php
-        if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
-            // Redirect to the homepage or another page
-            header('Location: index.php');
-            exit();
-        }
+    if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
+        // Redirect to the homepage or another page
+        header('Location: index.php');
+        exit();
+    }
     ?>
 
     <main class="container">
