@@ -1,18 +1,37 @@
 <!DOCTYPE html> 
 <html lang="en"> 
     <head> 
-        <link rel="stylesheet" href="css/productpage.css"> 
+        
         <link rel="stylesheet" href="css/nav.css"> 
         <link rel="stylesheet" href="css/footer.css"> 
-        <?php 
-            include "inc/head.inc.php"; 
-            require_once "zebra_session/session_start.php";
-        ?> 
+        <link rel="stylesheet" href="css/productpage.css"> 
     </head> 
     <body> 
-        <?php 
-            include "inc/nav.inc.php"; 
-        ?>  
+    <?php include "inc/head.inc.php";
+            require_once "zebra_session/session_start.php";
+        ?>
+    </head>
+    
+    <body>
+    <?php
+        include "inc/nav.inc.php";
+    ?>
+        <main class="container">
+            <header>
+                <div class="row mt-3 nav-container">
+                    <div class="col-sm-12 col-md-6">
+                        ADD BOOKS TO YOUR LIST
+                    </div>
+                    <nav class="col-sm-12 col-md-6 nav-item">
+                        <ul>              
+                            <li><a href="#"><i class="fa-solid fa-user"></i><span>Account</span></a></li>
+                            <li><a href="#"><i class="fa-solid fa-heart"></i><span>Wishlist</span></a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </header>
+
+    <body> 
         <div class="back-arrow">
             <a href="javascript:history.back()" aria-label="Go back">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
@@ -115,8 +134,8 @@
                 </div>
             </div>
         </main>
-        <?php 
-        include "inc/footer.inc.php"; 
-        ?> 
+        <?php
+        include "inc/footer.inc.php";
+        ?>
     </body> 
 </html>

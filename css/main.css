@@ -128,8 +128,6 @@ header {
     margin-left: 20px;
     border-color: white;
     overflow: hidden;
-    margin-top: 15px;
-    margin-bottom: 15px;
 
 }
 .card-title {
@@ -173,26 +171,4 @@ header {
 #slideshow img:first-of-type {
   opacity: 1; /* Show only the first image initially */
 }
-
-/* ++++++++++++++++++++ CSS for responsive design ++++++++++++++++++++ */
-/* MOBILE PHONES */
-@media screen and (max-width: 480px) {
-
-
-  .welcome-container {
-    font-size: smaller;
-  }
-
-
-
-}
-
-
-
-@media (min-width:769px) and (max-width:992px) {
-  .welcome-container {
-    font-size: medium;
-  }
-}
-
 
