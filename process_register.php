@@ -118,7 +118,7 @@
             echo "<h1 style='color: red;'>Uh Oh</h1>";
             echo '<h2>The following input errors were detected:</h2>';
             echo '<p>' . $errorMsg . '</p>';  
-            echo '<a href="login.php"> <button id="returnLoginBtn" class="btn btn-primary">Return to Login</button> </a>';
+            echo '<a href="register.php"> <button id="returnLoginBtn" class="btn btn-primary">Return to Login</button> </a>';
         }
 
         /*
