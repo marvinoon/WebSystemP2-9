@@ -38,9 +38,9 @@
         <section class="featured-books">
             <div class="featured-container">
                 <h2 class="text-center mb-4">Featured Books</h2>
-                <div class="row books-container flex-nowrap overflow-auto">
+                <div class="row books-container overflow-auto">
                     <!-- Book 1 -->
-                    <div class="col-3">
+                    <div class="col-10 col-md-6 col-lg-3">
                         <div class="card">
                             <img src="images/Example Book.png" class="card-img-top" alt="Book 1">
                             <div class="card-body">
@@ -53,7 +53,7 @@
                         </div>
                     </div>
                     <!-- Book 2 -->
-                    <div class="col-3">
+                    <div class="col-10 col-md-6 col-lg-3">
                         <div class="card">
                             <img src="images/Example Book.png" class="card-img-top" alt="Book 2">
                             <div class="card-body">
@@ -65,7 +65,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-3">
+                    <div class="col-10 col-md-6 col-lg-3">
                         <div class="card">
                             <img src="images/Example Book.png" class="card-img-top" alt="Book 3">
                             <div class="card-body">
@@ -77,7 +77,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-3">
+                    <div class="col-10 col-md-6 col-lg-3">
                         <div class="card">
                             <img src="images/Example Book.png" class="card-img-top" alt="Book 4">
                             <div class="card-body">
@@ -89,7 +89,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-3">
+                    <div class="col-10 col-md-6 col-lg-3">
                         <div class="card">
                             <img src="images/Example Book.png" class="card-img-top" alt="Book 5">
                             <div class="card-body">
@@ -101,7 +101,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-3">
+                    <div class="col-10 col-md-6 col-lg-3">
                         <div class="card">
                             <img src="images/Example Book.png" class="card-img-top" alt="Book 6">
                             <div class="card-body">
