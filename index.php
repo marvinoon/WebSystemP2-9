@@ -38,7 +38,7 @@
         <section class="featured-books">
             <div class="featured-container">
                 <h2 class="text-center mb-4">Featured Books</h2>
-                <div class="row books-container overflow-auto">
+                <div class="row books-container flex-nowrap overflow-auto">
                     <!-- Book 1 -->
                     <div class="col-10 col-md-6 col-lg-3">
                         <div class="card">
