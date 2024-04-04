@@ -1,0 +1,120 @@
+.back-arrow {
+    position: relative; /* Adjust based on your layout, you might need absolute or fixed depending on your navbar's behavior */
+    z-index: 10;
+    margin-top: 20px; /* Adjust this value based on your navbar's height */
+    margin-bottom: 20px;
+    margin-left: 20px; /* Space from the left edge */
+}
+
+.back-arrow a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px; /* Width of the clickable area */
+    height: 40px; /* Height of the clickable area */
+    border-radius: 20px; /* Makes it circular */
+    background-color: #f0f0f0; /* Background color of the button */
+    color: #000; /* Color of the arrow */
+    text-decoration: none;
+}
+
+.back-arrow a:hover {
+    background-color: #e0e0e0; /* Slightly darker on hover */
+}
+
+.back-arrow svg {
+    stroke: currentColor; /* SVG color inherits from anchor color */
+    
+}
+.book-cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Adjust based on your preference */
+}
+
+.book-card {
+    border: 1px solid black; /* Light grey border */
+    border-radius: 5px;
+    overflow: hidden;
+    width: 250px; /* Adjust based on your preference */
+}
+
+.book-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover; /* This ensures the image covers the area nicely */
+}
+
+.book-info {
+    padding: 10px;
+}
+
+.book-card:hover .book-image {
+    transform: scale(1.1); /* Adjust scale value as needed */
+}
+  
+.book-image {
+    transition: transform 0.5s ease; /* Smooth transition for the zoom effect */
+}
+
+.book-title {
+    margin-top: 0;
+    font-size: 18px; /* Adjust based on your preference */
+    text-align: center;
+}
+
+.book-author, .book-category {
+    margin: 5px 0;
+    font-size: 14px; /* Adjust based on your preference */
+    color: #666; /* Dark grey color for text */
+    text-align: center;
+}
+.product-btn{
+    color: #fff; /* White text */
+    background-color: black; /* Bootstrap primary blue */
+    border-color: black; /* Border color to match */
+    padding: 10px 20px; /* Button padding */
+    text-decoration: none; /* Remove underline from links */
+    display: inline-block; /* Align button correctly */
+    border-radius: 5px; /* Rounded button edges */
+}
+  
+.product-button{
+    text-align: center;
+}
+  
+.product-btn:hover {
+    background-color: gold; 
+    border-color: gold; /* Border color on hover */
+    color: #000;
+}
+
+/* Styles for Side bar*/
+.side-bar {
+    padding-top: 15px;
+    border-right: 2px solid lightgrey;
+    
+}
+
+/* Styles for filter bar*/
+.filter-container {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    border: 1px solid lightgrey;
+    height: 60px;
+}
+.drop-down {
+    padding-left: 10px;
+}
+
+.filter-type {
+    height: 35px;
+    padding: 5px;
+    font-size: 14px;
+}
+
+li{
+    list-style: none;
+}
+
