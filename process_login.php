@@ -43,7 +43,7 @@
 
 
         if (!empty($_POST["email"]) && !empty($_POST["pwd"])) {
-            checkAdmin();
+            authenticateUser();
         }
     
         if ($success)
@@ -67,69 +67,6 @@
             $data = stripslashes($data);
             $data = htmlspecialchars($data);
             return $data;
-        }
-
-        function checkAdmin()
-        {
-            global $admin_id, $fname, $lname, $email, $pwd_hashed, $errorMsg, $success;
-
-            // Create database connection.
-            $config = parse_ini_file('/var/www/private/db-config.ini');
-            if (!$config)
-            {
-                $errorMsg = "Failed to read database config file.";
-                $success = false;
-            }
-            else
-            {
-                $conn = new mysqli(
-                    $config['servername'],
-                    $config['username'],
-                    $config['password'],
-                    $config['dbname']
-                );
-
-                // Check connection
-                if ($conn->connect_error)
-                {
-                    $errorMsg = "Connection failed: " . $conn->connect_error;
-                    $success = false;
-                }
-                else
-                {
-                    // Prepare the statement to check if the user is an admin:
-                    $stmt = $conn->prepare("SELECT * FROM admin WHERE email=?");
-                    
-                    // Bind & execute the query statement:
-                    $stmt->bind_param("s", $email);
-                    $stmt->execute();
-                    $result = $stmt->get_result();
-                    if ($result->num_rows > 0)
-                    {
-                        // User is an admin, log in as admin.
-                        $_SESSION['admin'] = true;
-
-                        $row = $result->fetch_assoc();
-                        $fname = $row["fname"];
-                        $lname = $row["lname"];
-                        $pwd_hashed = $row["password"];
-                        $admin_id = $row["admin_id"];
-                        
-                        $_SESSION['admin_id'] = $admin_id;
-                        $_SESSION['lname'] = $lname; 
-                        header("Location: admin.php");
-                        exit();
-                    }
-                    else
-                    {
-                        // User is not an admin, continue with normal login.
-                        authenticateUser();
-                    }
-                    $stmt->close();
-                }
-
-                $conn->close();
-            }
         }
 
         /*
