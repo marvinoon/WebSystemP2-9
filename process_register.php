@@ -14,7 +14,6 @@
     <?php
         $email = $errorMsg = $fname = $lname = $pwd_hashed = "";
         $success = true;
-        
        //first name
         $fname = sanitize_input($_POST["fname"]);
         if (!preg_match("/^[a-zA-Z ]*$/", $fname)) {
@@ -118,7 +117,14 @@
             echo "<h1 style='color: red;'>Uh Oh</h1>";
             echo '<h4>The following input errors were detected:</h4>';
             echo '<p>' . $errorMsg . '</p>';
+            // Dynamically set the URL based on membership type
+            $paymentPage = "payment_" . strtolower($membershiptype) . ".php";
+            echo '<div class="mb-4" style="margin-top: 10px;">';
+            echo '<a href="' . $paymentPage . '">';
+            echo '<button id="returnLoginBtn" class="btn btn-primary">Return to Payment</button>';
+            echo '</a>';
             echo '</div>';
+
         }
 
         /*
@@ -213,4 +219,9 @@
             }
         
         ?>
+        <script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
 </body>
