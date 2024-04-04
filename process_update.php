@@ -124,8 +124,7 @@ if (!empty($_POST["pwd"])) {
        
         // Function to verify the old password
 function verifyOldPassword($pwd_old,$user_id, $link)
-{error_reporting(E_ALL);
-    ini_set('display_errors', 1);
+{
     global $email, $pwd_hashed, $errorMsg, $success;
 
     // Prepare the statement to fetch user details by user ID
@@ -165,20 +164,6 @@ function verifyOldPassword($pwd_old,$user_id, $link)
 function updateMemberToDB($user_id, $link) {
     global $fname, $lname, $email, $pwd_hashed, $errorMsg, $success;
     
-    // // Create database connection.
-    // $config = parse_ini_file('/var/www/private/db-config.ini');
-    // if (!$config) {
-    //     $errorMsg = "Failed to read database config file.";
-    //     $success = false;
-    //     return;
-    // }
-    
-    // $conn = new mysqli($config['servername'], $config['username'], $config['password'], $config['dbname']);
-    // if ($conn->connect_error) {
-    //     $errorMsg = "Connection failed: " . $conn->connect_error;
-    //     $success = false;
-    //     return;
-    // }
     
     // Initialize the update statement.
     $updateStmt = "UPDATE user SET";

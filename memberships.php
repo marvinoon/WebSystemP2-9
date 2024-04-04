@@ -63,7 +63,7 @@ if (isset($_SESSION['user_id'])) {
                             <li>Maximum of 1 active book loan at a time</li>
                         </ul>
                         <!-- Change button text based on membership type -->
-                        <?php if ($loggedIn && $membershipType !== 'regular'): ?>
+                        <?php if ($loggedIn && $membershipType !== 'Regular'): ?>
                             <a href="payment_regular.php" class="btn btn-primary">Upgrade to Regular Tier</a>
                         <?php elseif (!$loggedIn): ?>
                             <a href="loginregister.php" class="btn btn-primary">Sign Up Now</a>
@@ -81,7 +81,7 @@ if (isset($_SESSION['user_id'])) {
                             <li>Access to exclusive Premium-only book selections</li>
                         </ul>
                         <!-- Change button text based on membership type -->
-                        <?php if ($loggedIn && $membershipType !== 'premium'): ?>
+                        <?php if ($loggedIn && $membershipType !== 'Premium'): ?>
                             <a href="payment_premium.php" class="btn btn-primary">Upgrade to Premium Tier</a>
                         <?php elseif (!$loggedIn): ?>
                             <a href="loginregister.php" class="btn btn-primary">Sign Up Now</a>

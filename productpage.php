@@ -39,64 +39,81 @@
             </a>
         </div>
         <?php
-            //function to retrieve data
-            function retrieveData($book_id)
-            {
-                $config = parse_ini_file('/var/www/private/db-config.ini');
-                if (!$config) {
-                    echo "Failed to read database config file.";
-                    return null;
-                }
-            
+        error_reporting(E_ALL);
+        ini_set('display_errors', 1);
+include_once "db_connect.php"; // Include the database connection
 
-                $conn = new mysqli(
-                    $config['servername'],
-                    $config['username'],
-                    $config['password'],
-                    $config['dbname']
-                );
+function getUserMembershipStatus($user_id, $link) {
+    // Prepare SQL query to fetch user membership status
+    $stmt = $link->prepare("SELECT membershipType FROM user WHERE user_id = ?");
+    $stmt->bind_param("i", $user_id);
 
-                if ($conn->connect_error) {
-                    echo "Connection failed: " . $conn->connect_error;
-                    return null;
-                }
+    if (!$stmt->execute()) {
+        echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+        $stmt->close();
+        return null;
+    }
 
-                $stmt = $conn->prepare("SELECT * FROM books WHERE book_id = ?");
-                $stmt->bind_param("i", $book_id);
+    // Bind the result
+    $stmt->bind_result($membership_status);
 
-                if (!$stmt->execute()) {
-                    echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
-                    $stmt->close();
-                    $conn->close();
-                    return null;
-                }
+    // Fetch the result
+    $stmt->fetch();
 
-                $result = $stmt->get_result();
-                if ($row = $result->fetch_assoc()) {
-                    $stmt->close();
-                    $conn->close();
-                    return $row;
-                } else {
-                    $stmt->close();
-                    $conn->close();
-                    return null;
-                }
-            }
+    // Close the statement
+    $stmt->close();
 
-            // Check if 'book_id' is set in the string
-            if (isset($_GET['book_id'])) {
-                $book_id = intval($_GET['book_id']);
-                $book = retrieveData($book_id);
-                if (!$book) {
-                    echo "No book found.";
-                    // Handle the case where no book is found
-                }
-            } else {
-                echo "No book ID provided.";
-                // Handle the case where no book_id is provided
-            }
+    // Return the membership status
+    return $membership_status;
+}
+// Function to retrieve data of a book based on its ID
+function retrieveData($book_id, $link) {
+    // Prepare SQL query to fetch book data
+    $stmt = $link->prepare("SELECT * FROM books WHERE book_id = ?");
+    $stmt->bind_param("i", $book_id);
 
-            ?>
+    if (!$stmt->execute()) {
+        echo "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
+        $stmt->close();
+        return null;
+    }
+
+    // Get the result set
+    $result = $stmt->get_result();
+
+    // Fetch the book data as an associative array
+    $book = $result->fetch_assoc();
+
+    // Close the statement
+    $stmt->close();
+
+    // Return the book data
+    return $book;
+}
+// Check if 'book_id' is set in the URL
+if (isset($_GET['book_id'])) {
+    $book_id = intval($_GET['book_id']);
+    $book = retrieveData($book_id, $link); // Assuming retrieveData function is defined
+    if (!$book) {
+        echo "No book found.";
+        // Handle the case where no book is found
+    }
+} else {
+    echo "No book ID provided.";
+    // Handle the case where no book_id is provided   
+}
+
+// Check if user is logged in
+if (isset($_SESSION['user_id'])) {
+    // Retrieve user ID from session
+    $user_id = $_SESSION['user_id'];
+    
+    // Get the membership status
+    $membership_status = getUserMembershipStatus($user_id, $link);
+
+}
+?>
+
             <!-- MAIN CONTENT-->
             <div class="row mb-5">
                 <div class="col-5 image-container">
@@ -125,10 +142,28 @@
                                 <p><strong>Quantity Remaining:</strong> <?php echo htmlspecialchars($book['quantity']); ?></p>
                             </div>
                             <!-- Add to Account Button -->
-                            <div class="button-add-to-account">  
-                                <a href="#" class="btn-add-to-account">Add to Account</a>
-                                <a href="readbook.php" class="btn-read-book">Read Book</a>  
-                            </div> 
+                            <div class="button-add-to-account">
+                                <?php
+                                error_reporting(E_ALL);
+                                ini_set('display_errors', 1);
+                                
+// Check if user is logged in
+if (isset($_SESSION['user_id'])) {
+    $user_id = $_SESSION['user_id'];
+    $membership_status = getUserMembershipStatus($user_id, $link);
+
+    // Add to Account Button
+    if ($membership_status === "Regular" || $membership_status === "Premium") {
+        echo '<a href="add_to_cart.php?book_id=' . $book['book_id'] . '" class="btn-add-to-account">Add to Account</a>';
+    } else {
+        echo '<a href="upgrade_membership.php" class="btn-add-to-account">Upgrade Membership to borrow the book</a>';
+    }
+} else {
+    echo '<a href="loginregister.php" class="btn-add-to-account">Login to borrow the book</a>';
+}
+                                ?>
+                            </div>
+
                         </div>
                     </div>
                 </div>
