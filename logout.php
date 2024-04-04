@@ -3,8 +3,7 @@
 <head>
     <?php include "inc/head.inc.php"; ?>
     <link rel="stylesheet" href="css/nav.css">
-        <link rel="stylesheet" href="css/footer.css">
-
+    <link rel="stylesheet" href="css/footer.css">
 </head>
 <body>
     <?php include "inc/nav.inc.php"; 
