@@ -1,4 +1,5 @@
 <?php
+// $config = parse_ini_file('../db-config.ini');
 // Create database connection.
 $config = parse_ini_file('/var/www/private/db-config.ini');
 if (!$config) {
