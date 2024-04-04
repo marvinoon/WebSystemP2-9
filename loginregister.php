@@ -77,7 +77,7 @@
                         </label>
                         <label>
                             <span>Confirm Password</span>
-                            <input required type="password" id="pwd_confirm" name="pwd_confirm" class="form-control">
+                            <input required type="password" id="pwd_confirm" name="pwd_confirm" class="form-control" minlength ="8">
                         </label>
                         <button type="submit" class="submit">Sign Up</button>
                     </form>
