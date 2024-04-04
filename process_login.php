@@ -16,7 +16,7 @@
     <?php
         $email = $errorMsg = "";
         $success = true;
-
+        $update_status_success = updateMemberStatus($user_id, $link);
         // Email
         if (empty($_POST["email"]))
         {
@@ -108,60 +108,46 @@
         * Helper function to authenticate the login.
         */
         function authenticateUser()
-        {
-            global $fname, $lname, $email, $pwd_hashed, $errorMsg, $success, $link;
+{
+    global $fname, $lname, $email, $pwd_hashed, $errorMsg, $success, $link;
 
-            // Prepare the statement:
-            $stmt = $link->prepare("SELECT * FROM user WHERE email=?");
-            
-            // Bind & execute the query statement:
-            $stmt->bind_param("s", $email);
-            $stmt->execute();
-            $result = $stmt->get_result();
-            if ($result->num_rows > 0)
-            {
-                // Note that email field is unique, so should only have
-                // one row in the result set.
-                $row = $result->fetch_assoc();
-                $fname = $row["fname"];
-                $lname = $row["lname"];
-                $pwd_hashed = $row["password"];
+    // Prepare the statement:
+    $stmt = $link->prepare("SELECT * FROM user WHERE email=?");
+    
+    // Bind & execute the query statement:
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    if ($result->num_rows > 0)
+    {
+        // Note that email field is unique, so should only have
+        // one row in the result set.
+        $row = $result->fetch_assoc();
+        $fname = $row["fname"];
+        $lname = $row["lname"];
+        $pwd_hashed = $row["password"];
 
-                $user_id = $row["user_id"];
-                $_SESSION['user_id'] = $user_id;
-            
-                // Check if the password matches:
-                if (password_verify($_POST["pwd"], $pwd_hashed))
-                {
-                    // Password is correct, now update the member status before setting session variables
-                    $member_status = updateMemberStatus($user_id, $link);
-                    if ($member_status === false) {
-                        // Handle error, could not update status
-                        $errorMsg = "Could not update membership status.";
-                        $success = false;
-                    } else {
-                        // Set session variables
-                        $_SESSION['member_status'] = $member_status;
-                        
-                        // Redirect to user dashboard page
-                        header("Location: index.php");
-                        exit();
-                    }
-                }
-                else
-                {
-                    $errorMsg = "Email not found or password doesn't match...";
-                    $success = false;
-                }
-            }
-            else
-            {
-                $errorMsg = "Email not found or password doesn't match...";
-                $success = false;
-            }
-            
-            $stmt->close();
+        $user_id = $row["user_id"];
+        $_SESSION['user_id'] = $user_id;
+    
+        // Check if the password matches:
+        if (password_verify($_POST["pwd"], $pwd_hashed)) {
+            // Password is correct, set session variables and redirect to the appropriate page
+            $_SESSION['user_id'] = $user_id;
+            header("Location: index.php"); // or any other desired page
+            exit();
+        } else {
+            $errorMsg = "Email not found or password doesn't match...";
+            $success = false;
         }
+    } else {
+        $errorMsg = "Email not found or password doesn't match...";
+        $success = false;
+    }
+    
+    $stmt->close();
+}
+
 
         function updateMemberStatus($user_id, $conn) {
             // Prepare the SQL statement to update member_status based on expiry_date
