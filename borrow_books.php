@@ -1,3 +1,6 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>Borrow Books</title>
 <?php
 // Include necessary files
 require_once "zebra_session/session_start.php";
@@ -67,3 +70,4 @@ function clearCart($user_id) {
     $stmt->close();
 }
 ?>
+</html>

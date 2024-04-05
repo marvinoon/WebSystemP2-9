@@ -35,8 +35,6 @@
 
                     
                     <?php 
-                    // error_reporting(E_ALL);
-                    // ini_set('display_errors', 1);
                         if (isset($_SESSION['user_id'])) { 
                             echo '<li class="nav-item">
                             <a class="nav-link btn-custom" href="books_borrowed.php">Books</a>

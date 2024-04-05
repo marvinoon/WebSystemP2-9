@@ -18,6 +18,14 @@
 </head>
 <body>
     <?php include "inc/nav.inc.php"; ?>
+    <?php
+if (!isset($_SESSION['user_id'])) {
+    // Redirect the user to the login page or display a message
+    header("Location: loginregister.php");
+    exit; // Stop further execution
+}
+?>
+<main>
     <div class="container">
         <h2>Borrowed Books</h2>
         <?php
@@ -63,5 +71,6 @@
         ?>
     </div>
     <?php include "inc/footer.inc.php"; ?>
+    </main>
 </body>
 </html>

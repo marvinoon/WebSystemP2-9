@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8">
+        <!-- <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>About Us</title>
+        <title>About Us</title> -->
         <link rel="stylesheet" href="css/aboutus.css">
         <link rel="stylesheet" href="css/nav.css">
         <link rel="stylesheet" href="css/footer.css">
@@ -43,7 +43,7 @@
                     </div>
                     </div>
                     <div class="member-info text-center">
-                    <h4>Jonathan Goh Zhe Hong</h4>
+                    <h3>Jonathan Goh Zhe Hong</h4>
                     <span>Backend Developer</span>
                     </div>
                 </div><!-- End Team Member -->

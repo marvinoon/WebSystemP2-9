@@ -1,4 +1,5 @@
- <?php
+
+<?php
 require_once "zebra_session/session_start.php";
 ?>
 <?php

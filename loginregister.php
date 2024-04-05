@@ -8,7 +8,6 @@
             include "inc/head.inc.php";
             require_once "zebra_session/session_start.php";
         ?>
-        <title>Login/Register</title>
     </head>
     <body>
         <?php

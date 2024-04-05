@@ -32,12 +32,16 @@
     <link rel="stylesheet" href="css/nav.css">
     <link rel="stylesheet" href="css/footer.css">
 </head>
-<section>
-            <h2>Profile Details</h2>
+<body>
+<main>
+    <section>
+            <h1>Profile Details</h1>
+            <ul>
             <li><strong>First Name:</strong> <?php echo $user['fname']; ?></li>
             <li><strong>Last Name:</strong> <?php echo $user['lname']; ?></li>
             <li><strong>Email:</strong> <?php echo $user['email']; ?></li>
             <li><strong>Membership Type:</strong> <?php echo $user['membershipType']; ?></li>
+            
                     <?php 
         if ($user['membershipType'] != 'Free') {
             // Display member status and expiry date for non-Free members
@@ -45,6 +49,7 @@
             echo '<li><strong>Expiry Date:</strong> ' . $user['expiry_date'] . '</li>';
         }
         ?>
+        </ul>
             <?php 
         if ($user['membershipType'] == 'Free') {
             // Display upgrade buttons for free members
@@ -57,10 +62,10 @@
         ?>
         </ul>
       <!-- Add Edit Profile Button -->
-      <button id="editProfileBtn" class="btn btn-primary">Edit Profile</button>
+      <button id="editProfileBtn" class="btn btn-primary" style="background-color: #0000cc; color: white;">Edit Profile</button>
       <!-- Delete Profile Button -->
-<button id="deleteProfileBtn" class="btn btn-danger">Delete Profile</button>
-    </section>
+<button id="deleteProfileBtn" class="btn btn-danger" style="background-color: #990000; color: white;">Delete Profile</button>
+</section>
     <!-- Form for Editing Profile (Initially Hidden) -->
     <section id="editProfileForm" style="display: none;">
         <h2>Edit Profile</h2>
@@ -114,6 +119,5 @@ include "inc/footer.inc.php";
             window.location.href = "payment_premium.php";
         }
 </script>
-</main>
 </body>
 </html>
