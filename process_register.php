@@ -3,6 +3,7 @@
 <head>
 <link rel="stylesheet" href="css/nav.css">
 <link rel="stylesheet" href="css/footer.css">
+<title>Register</title>
     <?php 
         include "inc/head.inc.php";
         require_once "zebra_session/session_start.php";
@@ -12,6 +13,7 @@
     <?php
         include "inc/nav.inc.php";
     ?>
+    <main>
     <?php
         $email = $errorMsg = $fname = $lname = $pwd_hashed = "";
         $success = true;
@@ -118,7 +120,7 @@
             echo "<h1 style='color: red;'>Uh Oh</h1>";
             echo '<h2>The following input errors were detected:</h2>';
             echo '<p>' . $errorMsg . '</p>';  
-            echo '<a href="register.php"> <button id="returnLoginBtn" class="btn btn-primary">Return to Login</button> </a>';
+            echo '<button id="returnLoginBtn" class="btn btn-primary" href="register.php">Return to Login</button>';
         }
 
         /*
@@ -218,4 +220,5 @@
         window.history.back();
     }
 </script>
+</main>
 </body>

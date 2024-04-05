@@ -3,6 +3,7 @@
 <head>
 <link rel="stylesheet" href="css/nav.css">
 <link rel="stylesheet" href="css/footer.css">
+<title>Login</title>
     <?php 
         include "inc/head.inc.php";
         require_once "zebra_session/session_start.php";
@@ -13,6 +14,7 @@
     <?php
         include "inc/nav.inc.php";
     ?>
+    <main>
     <?php
         $email = $errorMsg = "";
         $success = true;
@@ -53,9 +55,9 @@
         else
         {
             echo "<h1 style='color: red;'>Uh Oh</h1>";
-            echo "<h1>The following errors were detected:</h1>";
+            echo "<h2>The following errors were detected:</h2>";
             echo "<p>" . $errorMsg . "</p>";
-            echo '<div class="mb-4" style="margin-top: 10px;"> <a href="loginregister.php"> <button id="returnLoginBtn" class="btn btn-primary">Return to Login</button> </a> </div>';
+            echo '<div class="mb-4" style="margin-top: 10px;"><button id="returnLoginBtn" class="btn btn-primary" href="loginregister.php">Return to Login</button> </div>';
         }
 
         /*
@@ -180,5 +182,6 @@ function authenticateUser()
             }
         }
     ?>
+    </main>
 </body>
 </html>

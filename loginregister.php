@@ -8,11 +8,13 @@
             include "inc/head.inc.php";
             require_once "zebra_session/session_start.php";
         ?>
+        <title>Login/Register</title>
     </head>
     <body>
         <?php
             include "inc/nav.inc.php";
         ?>
+        <main>
         <div class="back-arrow">
             <a href="javascript:history.back()" aria-label="Go back">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
@@ -37,12 +39,10 @@
                 <div class="sub-cont">
                     <div class="img">
                         <div class="img__text m--up">
-                        
-                            <h3>Don't have an account? Please Sign up!<h3>
+                            <h3>Don't have an account? Please Sign up!</h3>
                         </div>
                         <div class="img__text m--in">
-                        
-                            <h3>If you already have an account, just sign in.<h3>
+                            <h3>If you already have an account, just sign in.</h3>
                         </div>
                         <div class="img__btn">
                             <span class="m--up">Sign Up</span>
@@ -92,5 +92,6 @@
         <?php
         include "inc/footer.inc.php";
         ?>
+        </main>
     </body>
 </html>

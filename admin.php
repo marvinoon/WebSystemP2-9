@@ -14,16 +14,7 @@
     <?php
     include "inc/nav.inc.php";
     ?>
-    <!-- Only admin can view this page -->
-    <?php
-    if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
-        // Redirect to the homepage or another page
-        header('Location: index.php');
-        exit();
-    }
-    ?>
-    <div>
-    </div>
+
 
     <!-- Only admin can view this page -->
     <?php
