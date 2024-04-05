@@ -56,6 +56,9 @@
                             <span class="nav-link btn-custom">Welcome, ' . $_SESSION['lname'] . '</span>
                           </li>
                           <li class="nav-item">
+                            <a class="nav-link btn-custom" href="admin.php">Administration</a>
+                          </li>
+                          <li class="nav-item">
                             <a class="nav-link btn-custom" href="logout.php">Logout</a>
                           </li>';
                         } 

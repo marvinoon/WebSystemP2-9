@@ -20,8 +20,8 @@
     <?php
     if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
         // Redirect to the homepage or another page
-        // header('Location: index.php');
-        // exit();
+        header('Location: index.php');
+        exit();
     }
     ?>
 
@@ -62,31 +62,31 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="field-image" class="col-form-label">Image:</label>
-                                            <input type="file" required class="form-control" id="field-image" name="field-image"></input>
+                                            <input type="file" required class="form-control" id="field-image" name="field-image">
                                         </div>
                                         <div class="form-group">
                                             <label for="field-quantity" class="col-form-label">Quantity:</label>
-                                            <input type="number" required class="form-control" id="field-quantity" name="field-quantity"></input>
+                                            <input type="number" required class="form-control" id="field-quantity" name="field-quantity">
                                         </div>
                                         <div class="form-group">
                                             <label for="field-published" class="col-form-label">Year Published:</label>
-                                            <input type="text" required class="form-control" id="field-published" name="field-published"></input>
+                                            <input type="text" required class="form-control" id="field-published" name="field-published">
                                         </div>
                                         <div class="form-group">
                                             <label for="field-author" class="col-form-label">Author:</label>
-                                            <input type="text" required class="form-control" id="field-author" name="field-author"></input>
+                                            <input type="text" required class="form-control" id="field-author" name="field-author">
                                         </div>
                                         <div class="form-group">
                                             <label for="field-language" class="col-form-label">Language:</label>
-                                            <input type="text" required class="form-control" id="field-language" name="field-language"></input>
+                                            <input type="text" required class="form-control" id="field-language" name="field-language">
                                         </div>
                                         <div class="form-group">
                                             <label for="field-category" class="col-form-label">Category:</label>
-                                            <input type="text" required class="form-control" id="field-category" name="field-category"></input>
+                                            <input type="text" required class="form-control" id="field-category" name="field-category">
                                         </div>
                                         <div class="form-group">
                                             <label for="field-pages" class="col-form-label">Pages:</label>
-                                            <input type="number" required class="form-control" id="field-pages" name="field-pages"></input>
+                                            <input type="number" required class="form-control" id="field-pages" name="field-pages">
                                         </div>
                                         <div class="form-group">
                                             <label for="field-sample" class="col-form-label">Sample Text:</label>
@@ -102,7 +102,6 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
 
                 <?php
@@ -292,7 +291,7 @@
 
 
 
-                <div class="row books-container flex-nowrap overflow-auto">
+                <div style="padding-top: 10px;" class="row books-container flex-nowrap overflow-auto">
                     <!-- print from db -->
                     <?php
                     $errorMsg = "";
@@ -326,14 +325,14 @@
                                     echo '
                                 <div class="col-3">
                                     <div class="card">
-                                        <img src="' . $row["book_covers"] . '" class="card-img-top" alt="Book ' . $row["book_id"] . '">
+                                        <img src="' . $row["book_cover"] . '" class="card-img-top" alt="Book ' . $row["book_id"] . '">
                                         <div class="card-body">
                                             <h5 class="card-title">' . $row["book_title"] . '</h5>
                                             <p class="card-text">' . $row["sample_text"] . '</p>
                                             <button type="button" class="btn btn-warning" onclick="openEditModal(' . $row["book_id"] . ', ' . $row["quantity"] . ', ' . $row["year_published"] . ', \'' . $row["book_title"] . '\',\'' . $row["author"] . '\',\'' . $row["book_language"] . '\',\'' . $row["book_category"] . '\',' . $row["book_pages"] . ', \'' . $row["sample_text"] . '\',\'' . $row["book_cover"] . '\')">Edit</button>
                                             <form method="post">
                                                 <input type="hidden" name="del_book_id" value="' . $row['book_id'] . '">
-                                                <button type="submit" class="btn btn-danger" id="btn-delete" name="btn-delete" onclick="return confirm(\'Are you sure you want to delete this book?\')">Delete</button>
+                                                <button type="submit" class="btn btn-danger" name="btn-delete" onclick="return confirm(\'Are you sure you want to delete this book?\')">Delete</button>
                                             </form>
                                         </div>
                                     </div>
@@ -345,9 +344,7 @@
                     }
 
                     //inform success of fail
-                    if ($success) {
-                        echo "<script>alert('Generation Success');</script>";
-                    } else {
+                    if (!$success) {
                         echo "<script>alert('$errorMsg');</script>";
                     }
 
@@ -381,7 +378,7 @@
                             } else {
 
                                 // Prepare the statement:
-                                $stmt = $conn->prepare("DELETE FROM books WHERE (book_id = ?);");
+                                $stmt = $conn->prepare("DELETE FROM books WHERE (book_id = ?)");
 
                                 // Bind & execute the query statement:
                                 $stmt->bind_param("i", $bookId);
@@ -411,7 +408,6 @@
 
                             // Populate the modal fields with the retrieved data
                             document.getElementById('edit-field-title').value = title;
-                            document.getElementById('edit-field-image').value = cover;
                             document.getElementById('edit-field-quantity').value = quant;
                             document.getElementById('edit-field-published').value = year;
                             document.getElementById('edit-field-author').value = author;
@@ -448,31 +444,31 @@
                             </div>
                             <div class="form-group">
                                 <label for="edit-field-image" class="col-form-label">Image:</label>
-                                <input type="file" required class="form-control" id="edit-field-image" name="edit-field-image"></input>
+                                <input type="file" required class="form-control" id="edit-field-image" name="edit-field-image">
                             </div>
                             <div class="form-group">
                                 <label for="edit-field-quantity" class="col-form-label">Quantity:</label>
-                                <input type="number" required class="form-control" id="edit-field-quantity" name="edit-field-quantity"></input>
+                                <input type="number" required class="form-control" id="edit-field-quantity" name="edit-field-quantity">
                             </div>
                             <div class="form-group">
                                 <label for="edit-field-published" class="col-form-label">Year Published:</label>
-                                <input type="text" required class="form-control" id="edit-field-published" name="edit-field-published"></input>
+                                <input type="text" required class="form-control" id="edit-field-published" name="edit-field-published">
                             </div>
                             <div class="form-group">
                                 <label for="edit-field-author" class="col-form-label">Author:</label>
-                                <input type="text" required class="form-control" id="edit-field-author" name="edit-field-author"></input>
+                                <input type="text" required class="form-control" id="edit-field-author" name="edit-field-author">
                             </div>
                             <div class="form-group">
                                 <label for="edit-field-language" class="col-form-label">Language:</label>
-                                <input type="text" required class="form-control" id="edit-field-language" name="edit-field-language"></input>
+                                <input type="text" required class="form-control" id="edit-field-language" name="edit-field-language">
                             </div>
                             <div class="form-group">
                                 <label for="edit-field-category" class="col-form-label">Category:</label>
-                                <input type="text" required class="form-control" id="edit-field-category" name="edit-field-category"></input>
+                                <input type="text" required class="form-control" id="edit-field-category" name="edit-field-category">
                             </div>
                             <div class="form-group">
                                 <label for="edit-field-pages" class="col-form-label">Pages:</label>
-                                <input type="number" required class="form-control" id="edit-field-pages" name="edit-field-pages"></input>
+                                <input type="number" required class="form-control" id="edit-field-pages" name="edit-field-pages">
                             </div>
                             <div class="form-group">
                                 <label for="edit-field-sample" class="col-form-label">Sample Text:</label>
@@ -495,7 +491,6 @@
         function editLogic()
         {
             $bookId = $_POST["bookIdInput"];
-            echo "<script>alert('$bookId');</script>";
 
             $title = $errorMsg = "";
             $image = $errorMsg = "";

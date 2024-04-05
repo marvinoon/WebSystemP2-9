@@ -20,8 +20,8 @@
     <?php
     if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
         // Redirect to the homepage or another page
-        // header('Location: index.php');
-        // exit();
+        header('Location: index.php');
+        exit();
     }
     ?>
     <script>//To prevent repeated form submissions
@@ -38,20 +38,6 @@
         <section class="featured-books">
             <div class="featured-container">
                 <h2 class="text-center mb-4">Users</h2>
-                <ul class="list-group list-group-light">
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <div class="d-flex align-items-center">
-                            <img src="https://mdbootstrap.com/img/new/avatars/8.jpg" alt="" style="width: 45px; height: 45px" class="rounded-circle" />
-                            <h3>ID: 1</h3>
-                            <div class="ms-3">
-                                <p class="fw-bold mb-1">John Doe</p>
-                                <p class="text-muted mb-0">john.doe@gmail.com</p>
-                            </div>
-                        </div>
-                        <span class="badge rounded-pill badge-success">Active</span>
-                    </li>
-                </ul>
-
                 <ul class="list-group list-group-light">
                     <!-- print from db -->
                     <?php
@@ -97,7 +83,7 @@
                                     <button type="button" class="btn btn-warning" onclick="openEditModal(' . $row["user_id"] . ', \'' . $row["fname"] . '\', \'' . $row["lname"] . '\', \'' . $row["email"] . '\', \'' . $row["membershipType"] . '\')">Edit</button>
                                     <form method="post">
                                         <input type="hidden" name="del_user_id" value="' . $row['user_id'] . '">
-                                        <button type="submit" class="btn btn-danger" id="btn-delete" name="btn-delete" onclick="return confirm(\'Are you sure you want to delete this user?\')">Delete</button>
+                                        <button type="submit" class="btn btn-danger" name="btn-delete" onclick="return confirm(\'Are you sure you want to delete this user?\')">Delete</button>
                                     </form>
                                 </li>';
                                 }
@@ -107,9 +93,7 @@
                     }
 
                     //inform success of fail
-                    if ($success) {
-                        echo "<script>alert('Generation Success');</script>";
-                    } else {
+                    if (!$success) {
                         echo "<script>alert('$errorMsg');</script>";
                     }
 
@@ -205,11 +189,11 @@
                             </div>
                             <div class="form-group">
                                 <label for="edit-field-lname" class="col-form-label">Last Name:</label>
-                                <input type="text" class="form-control" id="edit-field-lname" name="edit-field-lname"></input>
+                                <input type="text" class="form-control" id="edit-field-lname" name="edit-field-lname">
                             </div>
                             <div class="form-group">
                                 <label for="edit-field-email" class="col-form-label">Email:</label>
-                                <input type="email" class="form-control" id="edit-field-email" name="edit-field-email"></input>
+                                <input type="email" class="form-control" id="edit-field-email" name="edit-field-email">
                             </div>
                             <div class="form-group">
                                 <label for="edit-field-membershipType" class="col-form-label">Membership Type:</label>
@@ -218,7 +202,6 @@
                                     <option value="Regular">Regular</option>
                                     <option value="Premium">Premium</option>
                                 </select>
-                                <!-- <input type="text" class="form-control" id="edit-field-membershipType" name="edit-field-membershipType"></input> -->
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
