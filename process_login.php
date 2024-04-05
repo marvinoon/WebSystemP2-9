@@ -84,7 +84,7 @@
             {
                 // User is an admin, log in as admin.
                 $_SESSION['admin'] = true;
-
+                $_SESSION['role'] = "admin";
                 $row = $result->fetch_assoc();
                 $fname = $row["fname"];
                 $lname = $row["lname"];
@@ -107,7 +107,7 @@
         /*
         * Helper function to authenticate the login.
         */
-        function authenticateUser()
+function authenticateUser()
 {
     global $fname, $lname, $email, $pwd_hashed, $errorMsg, $success, $link;
 
