@@ -1,7 +1,4 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-    // Include necessary files and start session
     require_once "zebra_session/session_start.php";
     require_once "zebra_session/db_connect.php";
 
@@ -11,7 +8,7 @@ ini_set('display_errors', 1);
         exit;
     }
 
-    // Check if user ID is provided in the URL
+    // Check if user ID is  in the URL
     if (isset($_GET['user_id'])) {
         $user_id = intval($_GET['user_id']);
 

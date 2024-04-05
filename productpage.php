@@ -135,17 +135,21 @@ if (isset($_SESSION['user_id'])) {
 if (isset($_SESSION['user_id'])) {
     $user_id = $_SESSION['user_id'];
     $membership_status = getUserMembershipStatus($user_id, $link);
-
-    // Add to Account Button
+// Add to Account Button
     if ($membership_status === "Regular" || $membership_status === "Premium") {
-        echo '<a href="add_to_cart.php?book_id=' . $book['book_id'] . '" class="btn-add-to-account">Add to Account</a>';
+        // Check if the book is in stock
+        if ($book['quantity'] > 0) {
+            echo '<a href="add_to_cart.php?book_id=' . $book['book_id'] . '" class="btn-add-to-account">Add to Account</a>';
+        } else {
+            echo '<button class="btn-add-to-account" disabled>Out of Stock</button>';
+        }
     } else {
         echo '<a href="memberships.php" class="btn-add-to-account">Upgrade Membership to borrow the book</a>';
     }
 } else {
     echo '<a href="loginregister.php" class="btn-add-to-account">Login to borrow the book</a>';
 }
-                                ?>
+?>
                             </div>
 
                         </div>

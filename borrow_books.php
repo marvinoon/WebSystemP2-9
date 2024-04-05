@@ -2,8 +2,13 @@
 <html lang="en">
 <title>Borrow Books</title>
 <?php
+// Include necessary files
 require_once "zebra_session/session_start.php";
 require_once "db_connect.php";
+
+// Set error reporting for debugging
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
 // Check if the borrow_books button is clicked
 if(isset($_POST['borrow_books'])) {
@@ -26,8 +31,8 @@ if(isset($_POST['borrow_books'])) {
     // Insert each book into borrowed_transactions table
     foreach($book_ids as $book_id) {
         // Prepare the SQL statement
-        $stmt = $link->prepare("INSERT INTO borrowed_transactions (book_id,user_id,  borrowed_date) VALUES (?, ?, ?)");
-        $stmt->bind_param("iis",$book_id,  $user_id, $borrowed_date);
+        $stmt = $link->prepare("INSERT INTO borrowed_transactions (book_id,user_id, borrowed_date) VALUES (?, ?, ?)");
+        $stmt->bind_param("iis", $book_id,  $user_id, $borrowed_date);
 
         // Execute the SQL statement
         $stmt->execute();
@@ -39,7 +44,7 @@ if(isset($_POST['borrow_books'])) {
     // Clear the cart after borrowing
     clearCart($user_id);
 
-    // Redirect to a success page or display a success message
+    // Redirect to a success page
     header("Location: books_borrowed.php");
     exit();
 } 
@@ -48,7 +53,6 @@ else {
     echo "Error: Borrow button not clicked or book_ids not set.";
     // You can also print additional debugging information if needed
     print_r($_POST);
-
 }
 
 // Function to clear the cart for a user

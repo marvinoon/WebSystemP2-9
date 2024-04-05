@@ -102,7 +102,6 @@
             echo "<h4>Registration successful!</h4>";
             //add if statement if membership == Regular or ==Premium bring to payment_regular.php or payment_premium.php
             // Redirect to payment page based on membership type
-            echo "$membershipType";
                 if ($membershipType === "regular") {
                     header("Location: payment_regular.php");
                     exit(); // Ensure script execution stops after redirection
