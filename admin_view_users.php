@@ -20,8 +20,8 @@
     <?php
     if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
         // Redirect to the homepage or another page
-        header('Location: index.php');
-        exit();
+        // header('Location: index.php');
+        // exit();
     }
     ?>
     <script>//To prevent repeated form submissions

@@ -20,12 +20,13 @@
     <?php
     if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
         // Redirect to the homepage or another page
-        header('Location: index.php');
-        exit();
+        // header('Location: index.php');
+        // exit();
     }
     ?>
 
-    <script>//To prevent repeated form submissions
+    <script>
+        //To prevent repeated form submissions
         if (window.history.replaceState) {
             window.history.replaceState(null, null, window.location.href);
         }
@@ -61,7 +62,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="field-image" class="col-form-label">Image:</label>
-                                            <input type="text" required class="form-control" id="field-image" name="field-image"></input>
+                                            <input type="file" required class="form-control" id="field-image" name="field-image"></input>
                                         </div>
                                         <div class="form-group">
                                             <label for="field-quantity" class="col-form-label">Quantity:</label>
@@ -133,7 +134,45 @@
                         $errorMsg .= "Image is required.\\n";
                         $success = false;
                     } else {
-                        $image = sanitize_input($_POST["field-image"]);
+                        //image 
+                        $target_dir = "images/";
+                        $target_file = $target_dir . $_POST["field-image"];
+                        $uploadOk = 1;
+                        $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+                        // Check if image file is a actual image or fake image 
+                        $check = getimagesize($target_file);
+                        if ($check !== false) {
+                            // File is an image - " . $check["mime"] . ". 
+                            $uploadOk = 1;
+                        } else {
+                            $errorMsg .= "Please select an image file.\\n";
+                            $uploadOk = 0;
+                        }
+
+                        // Check file size 
+                        if (filesize($target_file) > 500000) {
+                            $errorMsg .= "Image file is too large.\\n";
+                            $uploadOk = 0;
+                        }
+
+                        // Allow certain file formats 
+                        if (
+                            $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+                            && $imageFileType != "gif"
+                        ) {
+                            $errorMsg .= "Only JPG, JPEG, PNG & GIF files are allowed.\\n";
+                            $uploadOk = 0;
+                        }
+
+                        // Check if $uploadOk is set to 0 by an error 
+                        if ($uploadOk == 0) {
+                            $errorMsg .= "Error in Image Upload\\n";
+                            $success = false;
+                            // if everything is ok, try to upload file 
+                        } else {
+                            $image = $target_file;
+                        }
                     }
 
                     if (empty($_POST["field-quantity"])) {
@@ -184,6 +223,8 @@
                     } else {
                         $sample = sanitize_input($_POST["field-sample"]);
                     }
+
+
 
                     //If success 
                     if ($success) {
@@ -285,7 +326,7 @@
                                     echo '
                                 <div class="col-3">
                                     <div class="card">
-                                        <img src="images/Example Book.png" class="card-img-top" alt="Book ' . $row["book_id"] . '">
+                                        <img src="' . $row["book_covers"] . '" class="card-img-top" alt="Book ' . $row["book_id"] . '">
                                         <div class="card-body">
                                             <h5 class="card-title">' . $row["book_title"] . '</h5>
                                             <p class="card-text">' . $row["sample_text"] . '</p>
@@ -407,7 +448,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="edit-field-image" class="col-form-label">Image:</label>
-                                <input type="text" required class="form-control" id="edit-field-image" name="edit-field-image"></input>
+                                <input type="file" required class="form-control" id="edit-field-image" name="edit-field-image"></input>
                             </div>
                             <div class="form-group">
                                 <label for="edit-field-quantity" class="col-form-label">Quantity:</label>
@@ -479,7 +520,45 @@
                 $errorMsg .= "Image is required.\\n";
                 $success = false;
             } else {
-                $image = sanitize_input($_POST["edit-field-image"]);
+                //image 
+                $target_dir = "images/";
+                $target_file = $target_dir . $_POST["edit-field-image"];
+                $uploadOk = 1;
+                $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+
+                // Check if image file is a actual image or fake image 
+                $check = getimagesize($target_file);
+                if ($check !== false) {
+                    // File is an image - " . $check["mime"] . ". 
+                    $uploadOk = 1;
+                } else {
+                    $errorMsg .= "Please select an image file.\\n";
+                    $uploadOk = 0;
+                }
+
+                // Check file size 
+                if (filesize($target_file) > 500000) {
+                    $errorMsg .= "Image file is too large.\\n";
+                    $uploadOk = 0;
+                }
+
+                // Allow certain file formats 
+                if (
+                    $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+                    && $imageFileType != "gif"
+                ) {
+                    $errorMsg .= "Only JPG, JPEG, PNG & GIF files are allowed.\\n";
+                    $uploadOk = 0;
+                }
+
+                // Check if $uploadOk is set to 0 by an error 
+                if ($uploadOk == 0) {
+                    $errorMsg .= "Error in Image Upload\\n";
+                    $success = false;
+                    // if everything is ok, try to upload file 
+                } else {
+                    $image = $target_file;
+                }
             }
 
             if (empty($_POST["edit-field-quantity"])) {
