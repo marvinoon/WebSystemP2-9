@@ -3,7 +3,6 @@
 <head>
 <link rel="stylesheet" href="css/nav.css">
 <link rel="stylesheet" href="css/footer.css">
-<title>Register</title>
     <?php 
         include "inc/head.inc.php";
         require_once "zebra_session/session_start.php";
@@ -117,10 +116,13 @@
         }
         else
         {
+            echo '<div style="text-align: center;">';
             echo "<h1 style='color: red;'>Uh Oh</h1>";
-            echo '<h2>The following input errors were detected:</h2>';
-            echo '<p>' . $errorMsg . '</p>';  
-            echo '<div class="mb-4" style="margin-top: 10px;">
+            echo '<h4>The following input errors were detected:</h4>';
+            echo '<p>' . $errorMsg . '</p>';
+            echo '</div>';
+
+            echo '<div class="mb-4 text-center" style="margin-top: 10px;">
             <form action="loginregister.php" method="post">
             <button type="submit" class="btn btn-primary" name="returnToLogin">Return to Login</button>
             </form>

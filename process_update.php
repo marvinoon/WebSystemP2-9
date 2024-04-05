@@ -103,8 +103,9 @@ if (!empty($_POST["pwd"])) {
             echo "<h1 style='color: red;'>Uh Oh</h1>";
             echo '<h4>The following input errors were detected:</h4>';
             echo '<p>' . $errorMsg . '</p>';
+            echo '</div>';
             
-            echo '<div class="mb-4" style="margin-top: 10px;">';
+            echo '<div class="mb-4 text-center" style="margin-top: 10px;">';
             echo '<button id="goBackBtn" class="btn btn-primary" onclick="goBack()">Go Back</button>';
             echo '</div>';
 
@@ -219,3 +220,4 @@ function updateMemberToDB($user_id, $link) {
     }
 </script>
 </body>
+</html>

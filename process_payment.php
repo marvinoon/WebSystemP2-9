@@ -1,3 +1,6 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>Process Payment</title>
 <?php
 require_once "zebra_session/session_start.php";
 ?>
@@ -249,3 +252,4 @@ function getUserIDFromEmail($email)
         window.history.back();
     }
 </script>
+</html>
