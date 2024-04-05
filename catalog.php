@@ -75,7 +75,7 @@
             <div class="col-sm-12 col-lg-10 main-content">
                 <div class="drop-down">
                     <label>Sort By:</label>
-                    <select class="filter-type" onchange="sortBooks(this.value)">
+                    <select aria-label="filter" class="filter-type" onchange="sortBooks(this.value)">
                         <option value="name_az">Name A-Z</option>
                         <option value="name_za">Name Z-A</option>
                         <option value="oldest_newest">Oldest to Newest</option>
