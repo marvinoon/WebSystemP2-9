@@ -43,7 +43,7 @@
                     </div>
                     </div>
                     <div class="member-info text-center">
-                    <h4>Jonathan Goh Zhe Hong</h4>
+                    <h3>Jonathan Goh Zhe Hong</h4>
                     <span>Backend Developer</span>
                     </div>
                 </div><!-- End Team Member -->

@@ -38,8 +38,16 @@
 </head>
 <body>
     <?php include "inc/nav.inc.php"; ?>
+    <?php
+if (!isset($_SESSION['user_id'])) {
+    // Redirect the user to the login page or display a message
+    header("Location: loginregister.php");
+    exit; // Stop further execution
+}
+?>
+    <main>
     <div class="container">
-        <h2>Cart</h2>
+        <h1>Cart</h1>
         <div class="cart-items">
             <?php
             $user_id = $_SESSION['user_id']; // Assuming the user is logged in
@@ -73,5 +81,6 @@
             ?>
         </div>
     </div>
+        </main>
 </body>
 </html>

@@ -9,6 +9,7 @@
     ?>
 </head>
 <body>
+    <main>
     <?php
         include "inc/nav.inc.php";
     ?>
@@ -101,7 +102,7 @@ if (!empty($_POST["pwd"])) {
         {
             echo '<div style="text-align: center;">';
             echo "<h1 style='color: red;'>Uh Oh</h1>";
-            echo '<h4>The following input errors were detected:</h4>';
+            echo '<h2>The following input errors were detected:</h2>';
             echo '<p>' . $errorMsg . '</p>';
             echo '</div>';
             
@@ -219,5 +220,6 @@ function updateMemberToDB($user_id, $link) {
         window.history.back();
     }
 </script>
+</main>
 </body>
 </html>
