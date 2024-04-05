@@ -102,7 +102,7 @@
                                 <?php foreach ($books as $book): ?>
                                     <div class="col-3">
                                         <div class="card">
-                                            <img src="images/<?php echo $book['book_cover']; ?>" class="card-img-top" alt="<?php echo $book['book_title']; ?>">
+                                            <img src="<?php echo $book['book_cover']; ?>" class="card-img-top" alt="<?php echo $book['book_title']; ?>">
                                             <div class="card-body">
                                                 <h5 class="card-title"><?php echo $book['book_title']; ?></h5>
                                                 <p class="card-text"><?php echo $book['author']; ?></p>

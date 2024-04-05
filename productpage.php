@@ -103,7 +103,7 @@ if (isset($_SESSION['user_id'])) {
                 <div class="col-5 image-container">
                     <div class="image">
                         <!-- Display the book cover image -->
-                        <img class="img-fluid" src="images/<?php echo htmlspecialchars($book['book_cover']); ?>" width="100%"/>
+                        <img class="img-fluid" src="<?php echo htmlspecialchars($book['book_cover']); ?>" width="100%"/>
                     </div>
                 </div>
                 <div class="col-6">
