@@ -21,7 +21,7 @@
 
             <!-- MAIN CONTENT -->
             <form class="form sign-in" action="process_payment.php" method="post">
-                <h1>Regular Membership Payment</h1>
+                <h1>Premium Membership Payment</h1>
                 <input type="hidden" name="membership_type" value="Premium">
                 <h3>$99.00/Year<h3>
                                     <div class="form-group">

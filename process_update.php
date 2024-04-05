@@ -165,10 +165,10 @@ function updateMemberToDB($user_id, $link) {
     global $fname, $lname, $email, $pwd_hashed, $errorMsg, $success;
     
     
-    // Initialize the update statement.
+    // Initialize the update statement
     $updateStmt = "UPDATE user SET";
-    $params = []; // Array to hold dynamic parameters
-    $types = "";  // String to hold types of dynamic parameters
+    $params = []; // Array  
+    $types = "";  // String 
     
     // Check and append first name to the update statement if provided.
     if (!empty($fname)) {
@@ -177,45 +177,37 @@ function updateMemberToDB($user_id, $link) {
         $types .= "s";
     }
     
-    // Check and append last name to the update statement if provided.
+    // last name 
     if (!empty($lname)) {
         $updateStmt .= " lname = ?,";
         $params[] = $lname;
         $types .= "s";
     }
     
-    // Check and append email to the update statement if provided.
+    // email 
     if (!empty($email)) {
         $updateStmt .= " email = ?,";
         $params[] = $email;
         $types .= "s";
     }
     
-    // Check and append hashed password to the update statement if provided.
+    //  hashed password 
     if (!empty($pwd_hashed)) {
         $updateStmt .= " password = ?,";
         $params[] = $pwd_hashed;
         $types .= "s";
     }
     
-    // Remove the trailing comma and append the WHERE clause.
+    // Remove the comma and append the WHERE clause.
     $updateStmt = rtrim($updateStmt, ",") . " WHERE user_id = ?";
     $params[] = $user_id;
     $types .= "i";
-    
-    // Prepare the statement.
     $stmt = $link->prepare($updateStmt);
-    
-    // Dynamically bind parameters
     $stmt->bind_param($types, ...$params);
-    
-    // Execute the query statement.
     if (!$stmt->execute()) {
         $errorMsg = "Execute failed: (" . $stmt->errno . ") " . $stmt->error;
         $success = false;
     }
-    
-    // Close the statement and connection.
     $stmt->close();
     $link->close();
 }
