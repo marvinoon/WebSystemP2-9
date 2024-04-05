@@ -129,6 +129,7 @@ function authenticateUser()
 
         $user_id = $row["user_id"];
         $_SESSION['user_id'] = $user_id;
+        $_SESSION['lname'] = $lname; 
     
         // Check if the password matches:
         if (password_verify($_POST["pwd"], $pwd_hashed)) {
