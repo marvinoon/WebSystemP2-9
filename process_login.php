@@ -57,7 +57,9 @@
             echo "<h1 style='color: red;'>Uh Oh</h1>";
             echo "<h2>The following errors were detected:</h2>";
             echo "<p>" . $errorMsg . "</p>";
-            echo '<div class="mb-4" style="margin-top: 10px;"><button id="returnLoginBtn" class="btn btn-primary" href="loginregister.php">Return to Login</button> </div>';
+            echo '<div class="mb-4" style="margin-top: 10px;"> <form action="loginregister.php" method="post">
+            <button type="submit" class="btn btn-primary" name="returnToLogin">Return to Login</button>
+            </form></div>';
         }
 
         /*
