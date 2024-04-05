@@ -44,7 +44,6 @@
                             <li class="nav-item">
                                 <a class="nav-link btn-custom" href="account_page.php">' . $_SESSION['lname'] . '</a>
                             </li>
-                            </li>
                           <li class="nav-item">
                             <a class="nav-link btn-custom" href="logout.php">Logout</a>
                           </li>';

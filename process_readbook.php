@@ -1,3 +1,6 @@
+ <?php
+require_once "zebra_session/session_start.php";
+?>
 <?php
 // Function to retrieve book data including the text of a specific page
 function retrieveBookData($book_id, $page_number)
