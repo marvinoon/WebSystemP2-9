@@ -41,11 +41,11 @@
             // Calculate the maximum page number for the book with the given ID
             $max_page_number = getMaxPageNumber($book_id);
             ?>
-<div id="textContent" class="page">
+            <div id="textContent" class="page">
             <!-- MAIN CONTENT -->
-            <div class="row mb-5">
+                <div class="row mb-5">
                 <!-- Display the text of the specific page -->
-                <?php echo htmlspecialchars($page_text); ?>
+                    <?php echo htmlspecialchars($page_text); ?>
                 </div>
             </div>
         </div>

@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?php include "inc/head.inc.php"; ?>
+    <?php include "inc/head.inc.php"; 
+    require_once "zebra_session/session_start.php";
+    ?>
     <link rel="stylesheet" href="css/nav.css">
     <link rel="stylesheet" href="css/footer.css">
     <style>
